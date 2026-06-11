@@ -13,10 +13,13 @@ import Footer from './components/Footer';
 import { Play, Pause, RotateCcw, Volume2, Maximize2, X, Star, Calendar, UserCheck, Stethoscope } from 'lucide-react';
 import { DOCTOR_INFO, CLINIC_SERVICES } from './data';
 
-// Importing generated assets
-const doctorPortraitImg = '/src/assets/images/doctor_portrait_1781173266736.png';
-const clinicLobbyImg = '/src/assets/images/clinic_lobby_1781173290652.png';
-const dermalTreatmentImg = '/src/assets/images/dermal_treatment_1781173307786.png';
+// Importing generated assets with TS-ignore for seamless Vite asset handling
+// @ts-ignore
+import doctorPortraitImg from './assets/images/doctor_portrait_1781173266736.png';
+// @ts-ignore
+import clinicLobbyImg from './assets/images/clinic_lobby_1781173290652.png';
+// @ts-ignore
+import dermalTreatmentImg from './assets/images/dermal_treatment_1781173307786.png';
 
 export default function App() {
   const [isPortalOpen, setIsPortalOpen] = useState(false);

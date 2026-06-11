@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { CLINIC_SERVICES } from '../data';
-import { Service } from '../types';
 
 interface ServicesSectionProps {
   onBookService: (serviceId: string) => void;
@@ -20,9 +19,9 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
   const getIcon = (iconName: string) => {
     const IconComponent = (LucideIcons as any)[iconName];
     if (IconComponent) {
-      return <IconComponent className="h-6 w-6" />;
+      return <IconComponent className="h-5 w-5" />;
     }
-    return <LucideIcons.Sparkles className="h-6 w-6" />;
+    return <LucideIcons.Sparkles className="h-5 w-5" />;
   };
 
   const categories = [
@@ -33,32 +32,32 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
   ];
 
   return (
-    <section id="services" className="py-20 bg-white relative">
+    <section id="services" className="py-24 bg-[#FDFCF9] border-b border-[#E8E2D9] relative text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Head description */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <span className="font-sans text-xs font-bold text-blue-600 uppercase tracking-widest block">
-            What We Do
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="font-sans text-[10px] font-extrabold text-[#7C9070] uppercase tracking-[0.2em] block">
+              What We Do
           </span>
-          <h2 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl tracking-tight">
+          <h2 className="font-serif text-[#2C3328] text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight">
             Advanced Medical &amp; Aesthetic Solutions
           </h2>
-          <p className="font-sans text-base text-slate-550 leading-relaxed">
+          <p className="font-sans text-xs text-[#6B705C] leading-relaxed max-w-2xl mx-auto italic font-light">
             Delivering safe, scientifically proven treatments utilizing US-FDA approved machinery and clinical precision designed for Indian skin types.
           </p>
         </div>
 
         {/* Tab filters with responsive container */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12 border-b border-slate-100 pb-6">
+        <div className="flex flex-wrap justify-center gap-2 mb-16 border-b border-[#E8E2D9] pb-6">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id as any)}
-              className={`font-sans text-sm font-semibold px-5 py-2.5 rounded-full transition-all border ${
+              className={`font-sans text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all border cursor-pointer ${
                 activeTab === cat.id
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10'
-                  : 'bg-slate-50 text-slate-600 border-slate-100 hover:bg-slate-100'
+                  ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328] shadow-sm'
+                  : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9] hover:text-[#2C3328]'
               }`}
             >
               {cat.name}
@@ -70,26 +69,26 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Highlight Card left-side on wide screens */}
-          <div className="lg:col-span-4 relative rounded-3xl overflow-hidden bg-slate-900 text-white p-8 flex flex-col justify-between group min-h-[350px]">
+          <div className="lg:col-span-4 relative rounded-3xl overflow-hidden bg-[#2C3328] text-[#FDFCF9] p-8 flex flex-col justify-between group min-h-[350px] shadow-sm border border-[#E8E2D9]/20">
             {/* Absolute treat background */}
-            <div className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay group-hover:scale-105 transition-transform duration-500" style={{ backgroundImage: `url(${servicesImgUrl})` }} />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent z-0" />
+            <div className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay group-hover:scale-105 transition-transform duration-500" style={{ backgroundImage: `url(${servicesImgUrl})` }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2C3328] via-[#2C3328]/60 to-transparent z-0" />
 
-            <div className="relative z-10 space-y-3">
-              <span className="bg-blue-600/90 text-white font-semibold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full w-fit">
+            <div className="relative z-10 space-y-3 text-left">
+              <span className="bg-[#7C9070]/90 text-[#FDFCF9] font-bold text-[9px] uppercase tracking-widest px-3 py-1 rounded-full w-fit block">
                 US-FDA Laser Tech
               </span>
-              <h3 className="font-sans font-bold text-xl sm:text-2xl leading-snug">
+              <h3 className="font-serif font-normal text-2xl leading-tight text-[#FDFCF9]">
                 Painless Cooling Lasers
               </h3>
-              <p className="font-sans text-sm text-slate-300 leading-relaxed">
+              <p className="font-sans text-xs text-[#E8E2D9] leading-relaxed font-light">
                 Our clinic features triple-wavelength cooling lasers that treat hyperpigmentation, body hair, or acne scars comfortably with zero recovery downtime.
               </p>
             </div>
 
-            <div className="relative z-10 pt-6">
-              <span className="font-mono text-xs text-blue-400 font-bold block mb-1">Standard Price Match</span>
-              <span className="font-sans text-xs text-slate-400">All procedurals align with clinical safety guidelines.</span>
+            <div className="relative z-10 pt-6 text-left">
+              <span className="font-serif text-[#D4A373] text-sm block mb-1">Standard Price Match</span>
+              <span className="font-sans text-[10px] text-[#A5A58D] leading-none">All procedures align with clinical safety guidelines.</span>
             </div>
           </div>
 
@@ -98,40 +97,40 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
             {filteredServices.map((service) => (
               <div
                 key={service.id}
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all flex flex-col justify-between group"
+                className="bg-[#FDFCF9] p-6 rounded-2xl border border-[#E8E2D9] hover:bg-[#F2EFE9]/30 hover:border-[#7C9070]/60 transition-all flex flex-col justify-between group text-left"
               >
                 <div className="space-y-4">
                   {/* Service Category & Icon Row */}
                   <div className="flex items-center justify-between">
-                    <div className="bg-blue-50 text-blue-600 p-3 rounded-2xl border border-blue-100">
+                    <div className="bg-[#F0EBE3] text-[#7C9070] p-2.5 rounded-xl border border-[#E8E2D9]">
                       {getIcon(service.icon)}
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1 rounded-full bg-slate-50">
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#6B705C] px-3 py-1 rounded-full bg-[#F2EFE9]">
                       {service.category === 'clinical' ? 'Clinical Derm' : service.category === 'aesthetic' ? 'Cosmetic/Laser' : 'Hair Restoration'}
                     </span>
                   </div>
 
                   {/* Text Description */}
                   <div className="space-y-2">
-                    <h4 className="font-sans font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">
+                    <h4 className="font-sans font-bold text-sm text-[#2C3328] uppercase tracking-wider group-hover:text-[#7C9070] transition-colors">
                       {service.title}
                     </h4>
-                    <p className="font-sans text-sm text-slate-500 leading-relaxed">
+                    <p className="font-sans text-xs text-[#6B705C] leading-relaxed">
                       {service.description}
                     </p>
                   </div>
                 </div>
 
                 {/* Pricing, Duration & CTA Action Footer */}
-                <div className="border-t border-slate-50 pt-4 mt-6 flex items-center justify-between">
+                <div className="border-t border-[#E8E2D9] pt-4 mt-6 flex items-center justify-between">
                   <div className="flex flex-col text-left">
-                    <span className="text-[10px] text-slate-400 font-bold uppercase">Pricing Est.</span>
-                    <span className="font-sans text-sm font-extrabold text-blue-700">{service.priceRange}</span>
+                    <span className="text-[9px] text-[#A5A58D] font-bold uppercase">Pricing Est.</span>
+                    <span className="font-serif text-base font-semibold text-[#7C9070]">{service.priceRange}</span>
                   </div>
                   <button
                     id={`service-book-${service.id}`}
                     onClick={() => onBookService(service.id)}
-                    className="bg-slate-900 hover:bg-blue-600 hover:text-white text-slate-100 font-sans text-xs font-bold py-2.5 px-4 rounded-xl shadow-sm transition-all"
+                    className="bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-2.5 px-4.5 rounded-lg transition-all cursor-pointer"
                   >
                     Select &amp; Book
                   </button>

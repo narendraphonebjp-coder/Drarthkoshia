@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, Shield, Mail, Phone, Calendar, Clock, Sparkles, MessageSquare, User, FileText, Check, PlusCircle, LogOut } from 'lucide-react';
+import { X, Lock, Shield, Mail, Phone, Calendar, Clock, MessageSquare, User, FileText, Check, PlusCircle, LogOut } from 'lucide-react';
 import { TIME_SLOTS, CLINIC_SERVICES, DOCTOR_INFO } from '../data';
 import { Appointment } from '../types';
 
@@ -142,44 +142,44 @@ export default function PortalModal({
   const activeUserTitle = portalUserName || "Arjun Patel";
 
   return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl border border-slate-100 flex flex-col md:flex-row animate-in zoom-in-95 duration-250">
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-[#2C3328]/60 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="bg-[#FDFCF9] rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl border border-[#E8E2D9] flex flex-col md:flex-row animate-in zoom-in-95 duration-250">
         
         {/* Left column brand detail / decoration */}
-        <div className="bg-slate-900 text-white p-6 md:p-8 md:w-1/3 flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-sky-500/10 rounded-full blur-xl" />
+        <div className="bg-[#2C3328] text-[#FDFCF9] p-6 md:p-8 md:w-1/3 flex flex-col justify-between relative overflow-hidden text-left border-r border-[#3D4637]">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#7C9070]/10 rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#6B705C]/10 rounded-full blur-xl" />
 
           <div className="relative z-10 space-y-4">
             <div className="flex items-center space-x-2.5">
-              <div className="bg-blue-600 text-white p-2 rounded-xl">
-                <Shield className="h-5 w-5" />
+              <div className="bg-[#7C9070] text-[#FDFCF9] p-2 rounded-xl border border-[#7C9070]/20">
+                <Shield className="h-4 w-4" />
               </div>
-              <span className="font-sans font-extrabold text-sm tracking-wider uppercase">Secure Portal</span>
+              <span className="font-sans font-bold text-[10px] tracking-widest uppercase text-[#FDFCF9]">Secure Portal</span>
             </div>
             
             <div className="space-y-2">
-              <h3 className="font-sans font-bold text-xl leading-tight">Your Skin Health Dashboard</h3>
-              <p className="font-sans text-xs text-slate-400 leading-relaxed">
+              <h3 className="font-serif text-[#FDFCF9] text-xl leading-snug font-normal">Your Skin Health Dashboard</h3>
+              <p className="font-sans text-xs text-[#A5A58D] leading-relaxed">
                 Check and confirm upcoming treatments, download medical prescriptions, or ask follow-up questions directly to our dermatological office.
               </p>
             </div>
           </div>
 
-          <div className="relative z-10 pt-8 border-t border-slate-800 space-y-2.5 text-xs text-slate-400">
-            <span className="font-bold text-slate-200 block uppercase tracking-widest">Clinic Security Summary</span>
-            <p>100% HIPAA and medical data compliant. Prescriptions are encrypted on server files securely.</p>
+          <div className="relative z-10 pt-8 border-t border-[#3D4637] space-y-2.5 text-xs text-[#A5A58D]">
+            <span className="font-bold text-[#E8E2D9] block uppercase tracking-wider text-[10px]">Clinic Security Compliance</span>
+            <p className="font-light text-[11px] leading-relaxed">100% HIPAA and medical data compliant. Prescriptions are encrypted on server files securely.</p>
           </div>
         </div>
 
         {/* Right column core functions */}
-        <div className="flex-1 p-6 md:p-8 overflow-y-auto max-h-[85vh] md:max-h-[min(85vh,650px)] relative">
+        <div className="flex-1 p-6 md:p-8 overflow-y-auto max-h-[85vh] md:max-h-[min(85vh,650px)] relative bg-[#FDFCF9]">
           
           {/* Close trigger */}
           <button
             id="close-portal-modal"
             onClick={onClose}
-            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-50 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 text-[#6B705C] hover:text-[#2C3328] p-2 rounded-full hover:bg-[#F2EFE9] transition-all cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -188,43 +188,43 @@ export default function PortalModal({
           {activeTab === 'signin' && !portalUserName && (
             <div className="space-y-6">
               <div className="text-left">
-                <h2 className="font-sans font-extrabold text-2xl text-slate-900">Sign In to Portal</h2>
-                <p className="font-sans text-slate-500 text-xs mt-1">Access clinical prescriptions, diagnostic charts and rapid appointments.</p>
+                <h2 className="font-serif text-2xl text-[#2C3328]">Sign In to Portal</h2>
+                <p className="font-sans text-[#6B705C] text-xs mt-1 italic font-light">Access clinical prescriptions, diagnostic charts and rapid appointments.</p>
               </div>
 
               {errorMessage && (
-                <div className="bg-rose-50 border border-rose-100 p-3 rounded-xl text-rose-600 font-sans text-xs font-semibold">
+                <div className="bg-rose-50 border border-rose-100 p-3 rounded-xl text-rose-700 font-sans text-xs font-semibold">
                   {errorMessage}
                 </div>
               )}
 
               <form onSubmit={handleSignIn} className="space-y-4 text-left">
-                <div className="space-y-1">
-                  <label className="font-sans text-xs font-bold text-slate-700 block">Registered Email</label>
+                <div className="space-y-1.5">
+                  <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Registered Email</label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                    <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                     <input
                       type="email"
                       required
                       value={authData.email}
                       onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
                       placeholder="e.g., patient@gmail.com"
-                      className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                      className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="font-sans text-xs font-bold text-slate-700 block">Password</label>
+                <div className="space-y-1.5">
+                  <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Password</label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                    <Lock className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                     <input
                       type="password"
                       required
                       value={authData.password}
                       onChange={(e) => setAuthData({ ...authData, password: e.target.value })}
                       placeholder="••••••••"
-                      className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                      className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                     />
                   </div>
                 </div>
@@ -232,18 +232,18 @@ export default function PortalModal({
                 <button
                   id="portal-signin-submit"
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-sans text-sm font-bold py-3 rounded-xl shadow-lg shadow-blue-500/10 cursor-pointer text-center"
+                  className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl cursor-pointer text-center"
                 >
                   Enter Account Dashboard
                 </button>
               </form>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-500">First time at the clinic?</span>
+              <div className="pt-4 border-t border-[#E8E2D9] flex items-center justify-between text-xs">
+                <span className="text-[#6B705C] font-light">First time at the clinic?</span>
                 <button
                   id="portal-switch-signup"
                   onClick={() => setActiveTab('signup')}
-                  className="text-blue-600 font-bold hover:underline"
+                  className="text-[#7C9070] font-bold hover:underline cursor-pointer"
                 >
                   Register Patient Profile
                 </button>
@@ -255,75 +255,75 @@ export default function PortalModal({
           {activeTab === 'signup' && !portalUserName && (
             <div className="space-y-6">
               <div className="text-left">
-                <h2 className="font-sans font-extrabold text-2xl text-slate-900">Create Patient Account</h2>
-                <p className="font-sans text-slate-500 text-xs mt-1">Unlock seamless treatment tracking and direct inquiries.</p>
+                <h2 className="font-serif text-2xl text-[#2C3328]">Create Patient Account</h2>
+                <p className="font-sans text-[#6B705C] text-xs mt-1 italic font-light">Unlock seamless treatment tracking and direct inquiries.</p>
               </div>
 
               {errorMessage && (
-                <div className="bg-rose-50 border border-rose-100 p-3 rounded-xl text-rose-600 font-sans text-xs font-semibold">
+                <div className="bg-rose-50 border border-rose-100 p-3 rounded-xl text-rose-700 font-sans text-xs font-semibold">
                   {errorMessage}
                 </div>
               )}
 
-              <form onSubmit={handleSignUp} className="space-y-3.5 text-left">
-                <div className="space-y-1">
-                  <label className="font-sans text-xs font-bold text-slate-700 block">Your Full Name</label>
+              <form onSubmit={handleSignUp} className="space-y-4 text-left">
+                <div className="space-y-1.5">
+                  <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Your Full Name</label>
                   <div className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                    <User className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                     <input
                       type="text"
                       required
                       value={authData.name}
                       onChange={(e) => setAuthData({ ...authData, name: e.target.value })}
                       placeholder="e.g., Anoop Shah"
-                      className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                      className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="font-sans text-xs font-bold text-slate-700 block">Mobile No.</label>
+                  <div className="space-y-1.5">
+                    <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Mobile No.</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                      <Phone className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                       <input
                         type="tel"
                         required
                         value={authData.phone}
                         onChange={(e) => setAuthData({ ...authData, phone: e.target.value })}
                         placeholder="+91 99999 00000"
-                        className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                        className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="font-sans text-xs font-bold text-slate-700 block">Email Address</label>
+                  <div className="space-y-1.5">
+                    <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Email Address</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                      <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                       <input
                         type="email"
                         required
                         value={authData.email}
                         onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
                         placeholder="patient@gmail.com"
-                        className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                        className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="font-sans text-xs font-bold text-slate-700 block">Password</label>
+                <div className="space-y-1.5">
+                  <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Password</label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                    <Lock className="absolute left-3.5 top-3.5 h-4 w-4 text-[#7C9070]" />
                     <input
                       type="password"
                       required
                       value={authData.password}
                       onChange={(e) => setAuthData({ ...authData, password: e.target.value })}
                       placeholder="Create Secure Password"
-                      className="w-full text-sm font-medium border border-slate-200 rounded-xl py-2.5 pl-10 pr-3.5 outline-none focus:border-blue-600 transition-colors"
+                      className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-3 pl-10 pr-3.5 outline-none focus:border-[#7C9070] bg-white text-[#2C3328]"
                     />
                   </div>
                 </div>
@@ -331,18 +331,18 @@ export default function PortalModal({
                 <button
                   id="portal-signup-submit"
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-sans text-sm font-bold py-3 rounded-xl shadow-lg shadow-blue-500/10 cursor-pointer text-center"
+                  className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl cursor-pointer text-center"
                 >
                   Generate Profile Account
                 </button>
               </form>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-500">Already registered?</span>
+              <div className="pt-4 border-t border-[#E8E2D9] flex items-center justify-between text-xs">
+                <span className="text-[#6B705C] font-light">Already registered?</span>
                 <button
                   id="portal-switch-signin"
                   onClick={() => setActiveTab('signin')}
-                  className="text-blue-600 font-bold hover:underline"
+                  className="text-[#7C9070] font-bold hover:underline cursor-pointer"
                 >
                   Sign In Instantly
                 </button>
@@ -355,10 +355,10 @@ export default function PortalModal({
             <div className="space-y-6">
               
               {/* Patient header row */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4 text-left">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E2D9] pb-4 text-left">
                 <div>
-                  <h3 className="font-sans font-extrabold text-slate-900 text-lg">Patient Portal Dashboard</h3>
-                  <span className="font-sans text-xs text-slate-500 font-medium">Hello, <strong className="text-blue-700">{activeUserTitle}</strong> • Welcome Back</span>
+                  <h3 className="font-serif text-[#2C3328] text-base font-normal">Patient Portal Dashboard</h3>
+                  <span className="font-sans text-xs text-[#6B705C]">Hello, <strong className="text-[#7C9070]">{activeUserTitle}</strong> • Welcome Back</span>
                 </div>
                 <button
                   id="portal-logout-action"
@@ -366,7 +366,7 @@ export default function PortalModal({
                     onLogout();
                     setActiveTab('signin');
                   }}
-                  className="flex items-center space-x-1 text-slate-500 hover:text-red-500 transition-colors text-xs font-bold"
+                  className="flex items-center space-x-1 text-[#6B705C] hover:text-[#2C3328] transition-colors text-xs font-bold uppercase tracking-wider cursor-pointer"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Logout</span>
@@ -374,11 +374,11 @@ export default function PortalModal({
               </div>
 
               {/* Dashboard Internal Navigation tabs */}
-              <div className="flex flex-wrap gap-2 border-b border-slate-50 pb-2">
+              <div className="flex flex-wrap gap-2 border-b border-[#E8E2D9] pb-4">
                 <button
                   onClick={() => setDashboardTab('appointments')}
-                  className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold ${
-                    dashboardTab === 'appointments' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                  className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                    dashboardTab === 'appointments' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
                   }`}
                 >
                   <Calendar className="h-3.5 w-3.5" />
@@ -386,8 +386,8 @@ export default function PortalModal({
                 </button>
                 <button
                   onClick={() => setDashboardTab('prescriptions')}
-                  className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold ${
-                    dashboardTab === 'prescriptions' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                  className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                    dashboardTab === 'prescriptions' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
                   }`}
                 >
                   <FileText className="h-3.5 w-3.5" />
@@ -395,8 +395,8 @@ export default function PortalModal({
                 </button>
                 <button
                   onClick={() => setDashboardTab('messages')}
-                  className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold ${
-                    dashboardTab === 'messages' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                  className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                    dashboardTab === 'messages' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
                   }`}
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
@@ -404,7 +404,7 @@ export default function PortalModal({
                 </button>
                 <button
                   onClick={() => setDashboardTab('book')}
-                  className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100`}
+                  className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer bg-[#7C9070] text-[#FDFCF9] border border-[#7C9070] hover:bg-[#6B705C]`}
                 >
                   <PlusCircle className="h-3.5 w-3.5" />
                   <span>Book Appointment</span>
@@ -415,48 +415,48 @@ export default function PortalModal({
               {dashboardTab === 'appointments' && (
                 <div className="space-y-4 text-left">
                   <div className="flex items-center justify-between">
-                    <h4 className="font-sans font-bold text-slate-800 text-sm">Your Scheduled Clinical Sessions</h4>
-                    <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">Live Status Active</span>
+                    <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Your Scheduled Clinical Sessions</h4>
+                    <span className="text-[9px] text-[#7C9070] font-extrabold bg-[#F0EBE3] px-2.5 py-1 rounded-full border border-[#E8E2D9] uppercase tracking-wider">Live Status Active</span>
                   </div>
 
                   {appointmentsList.length === 0 ? (
-                    <div className="text-center py-8 text-slate-400 text-xs font-medium">
+                    <div className="text-center py-8 text-[#6B705C] text-xs font-medium italic">
                       No active bookings. Select the "Book Appointment" tab to choose a medical slot.
                     </div>
                   ) : (
                     <div className="space-y-3">
                       {appointmentsList.map((appt) => (
-                        <div key={appt.id} className="bg-slate-50 border border-slate-100 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                          <div className="space-y-1.5">
-                            <span className="text-[10px] bg-blue-100 text-blue-800 font-extrabold tracking-wider uppercase py-0.5 px-2 rounded-full inline-block">
+                        <div key={appt.id} className="bg-[#F2EFE9]/40 border border-[#E8E2D9] p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div className="space-y-2">
+                            <span className="text-[9px] bg-[#F0EBE3] text-[#7C9070] font-extrabold tracking-wider uppercase py-1 px-3 rounded-full inline-block">
                               {appt.treatmentType}
                             </span>
-                            <h5 className="font-sans font-bold text-sm text-slate-900 flex items-center space-x-2">
-                              <span>Patient: {appt.patientName}</span>
+                            <h5 className="font-sans font-bold text-xs text-[#2C3328] uppercase tracking-wider">
+                              Patient: {appt.patientName}
                             </h5>
                             
-                            <div className="flex flex-wrap items-center gap-3 text-slate-500 text-xs font-medium">
+                            <div className="flex flex-wrap items-center gap-3 text-[#6B705C] text-xs font-medium">
                               <span className="flex items-center space-x-1">
-                                <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                                <Calendar className="h-3.5 w-3.5 text-[#7C9070]" />
                                 <span>{appt.date}</span>
                               </span>
                               <span className="flex items-center space-x-1">
-                                <Clock className="h-3.5 w-3.5 text-slate-400" />
+                                <Clock className="h-3.5 w-3.5 text-[#7C9070]" />
                                 <span>{appt.timeSlot}</span>
                               </span>
                             </div>
 
                             {appt.notes && (
-                              <p className="font-sans text-[11px] text-slate-400 leading-tight">Note: {appt.notes}</p>
+                              <p className="font-sans text-[11px] text-[#A5A58D] leading-tight">Note: {appt.notes}</p>
                             )}
                           </div>
 
                           <div className="flex flex-col sm:items-end justify-between flex-shrink-0">
-                            <span className="inline-flex items-center space-x-1 text-emerald-700 font-extrabold text-xs bg-emerald-100/50 px-2.5 py-1 rounded-full border border-emerald-200">
-                              <Check className="h-3.5 w-3.5 text-emerald-600" />
+                            <span className="inline-flex items-center space-x-1 text-[#7C9070] font-bold text-[10px] uppercase tracking-wider bg-[#F0EBE3] px-3 py-1.5 rounded-full border border-[#E8E2D9]">
+                              <Check className="h-3 w-3 text-[#7C9070]" />
                               <span>Confirmed</span>
                             </span>
-                            <span className="text-[10px] text-slate-400 mt-2">ID: {appt.id.slice(0, 10)}</span>
+                            <span className="text-[10px] text-[#A5A58D] mt-2">ID: {appt.id.slice(0, 10)}</span>
                           </div>
                         </div>
                       ))}
@@ -468,40 +468,40 @@ export default function PortalModal({
               {/* Sub-view B: CLINICAL PRESCRIPTIONS */}
               {dashboardTab === 'prescriptions' && (
                 <div className="space-y-4 text-left">
-                  <h4 className="font-sans font-bold text-slate-800 text-sm">Official Diagnostic Records &amp; Remedies</h4>
+                  <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Official Diagnostic Records &amp; Remedies</h4>
 
-                  <div className="border border-slate-100 p-5 rounded-2xl bg-white space-y-4 shadow-sm relative">
-                    <div className="border-b border-dashed border-slate-200 pb-3 flex items-center justify-between text-xs">
+                  <div className="border border-[#E8E2D9] p-5 rounded-2xl bg-white space-y-4 shadow-sm relative">
+                    <div className="border-b border-dashed border-[#E8E2D9] pb-3 flex items-center justify-between text-xs">
                       <div>
-                        <span className="font-bold text-slate-900 block">{DOCTOR_INFO.clinicName}</span>
-                        <span className="text-slate-400">Ambawadi, Ahmedabad</span>
+                        <span className="font-bold text-[#2C3328] block">{DOCTOR_INFO.clinicName}</span>
+                        <span className="text-[#6B705C]">Ambawadi, Ahmedabad</span>
                       </div>
-                      <div className="text-right">
-                        <span className="font-mono text-slate-500 block">REF: RX-2026-9912</span>
-                        <span className="text-slate-400">Date: June 11, 2026</span>
+                      <div className="text-right text-[#6B705C]">
+                        <span className="font-mono text-[#2C3328] block">REF: RX-2026-9912</span>
+                        <span className="text-[#A5A58D]">Date: June 11, 2026</span>
                       </div>
                     </div>
 
                     <div className="space-y-3">
                       <div>
-                        <span className="text-[10px] text-slate-400 uppercase font-bold block">Patient Name</span>
-                        <span className="text-sm font-semibold text-slate-800">{activeUserTitle}</span>
+                        <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Patient Name</span>
+                        <span className="text-xs font-bold text-[#2C3328] uppercase">{activeUserTitle}</span>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <span className="text-[10px] text-slate-400 uppercase font-bold block">Diagnosis</span>
-                          <span className="text-xs font-semibold text-slate-800">Severe Acne Vulgaris &amp; Scar Tissue</span>
+                          <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Diagnosis</span>
+                          <span className="text-xs font-semibold text-[#2C3328]">Severe Acne Vulgaris &amp; Scar Tissue</span>
                         </div>
                         <div>
-                          <span className="text-[10px] text-slate-400 uppercase font-bold block">Prescribing Physician</span>
-                          <span className="text-xs font-semibold text-slate-800">{DOCTOR_INFO.name}</span>
+                          <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Prescribing Physician</span>
+                          <span className="text-xs font-semibold text-[#2C3328]">{DOCTOR_INFO.name}</span>
                         </div>
                       </div>
 
-                      <div className="bg-slate-50 p-3.5 rounded-xl space-y-2">
-                        <span className="text-[10px] text-blue-700 font-extrabold uppercase tracking-wide block">Regimen &amp; Medication Plan</span>
-                        <ul className="text-xs font-medium text-slate-600 space-y-2 list-disc pl-4.5">
+                      <div className="bg-[#F2EFE9]/40 border border-[#E8E2D9] p-4 rounded-xl space-y-2">
+                        <span className="text-[10px] text-[#7C9070] font-extrabold uppercase tracking-widest block">Regimen &amp; Medication Plan</span>
+                        <ul className="text-xs text-[#4A443E] space-y-2 list-disc pl-4.5 font-light">
                           <li><strong>Cap. Isotretinoin 10mg</strong> - Once daily after dinner (for sebum suppression)</li>
                           <li><strong>Azelaic Acid 15% Gel</strong> - Soft pea-sized layer on hyperpigmentation, morning hours</li>
                           <li><strong>Fractional CO2 Laser Therapy</strong> - 3 sessions scheduled (spaced 4 weeks apart)</li>
@@ -510,9 +510,9 @@ export default function PortalModal({
                       </div>
                     </div>
 
-                    <div className="border-t border-dashed border-slate-200 pt-3 flex items-center justify-between bg-yellow-50/50 p-2.5 rounded-xl border border-yellow-100">
-                      <span className="text-[10px] text-amber-800 font-bold">Important Instructions</span>
-                      <p className="text-[10px] text-amber-600">Avoid active scrubbing. Apply healing ointment for 48 hours post-laser.</p>
+                    <div className="border-t border-dashed border-[#E8E2D9] pt-3 flex items-center justify-between bg-[#F0EBE3] p-2.5 rounded-xl border border-[#E8E2D9]">
+                      <span className="text-[9px] text-[#7C9070] font-bold uppercase tracking-wider">Important Instructions</span>
+                      <p className="text-[10px] text-[#6B705C] italic font-light">Avoid active scrubbing. Apply healing ointment for 48 hours post-laser.</p>
                     </div>
                   </div>
                 </div>
@@ -522,24 +522,24 @@ export default function PortalModal({
               {dashboardTab === 'messages' && (
                 <div className="space-y-4 text-left">
                   <div className="flex items-center justify-between">
-                    <h4 className="font-sans font-bold text-slate-800 text-sm">Secure Message Workspace</h4>
-                    <span className="text-[10px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full border border-sky-100 font-bold">Dr. Koshia Helpdesk</span>
+                    <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Secure Message Workspace</h4>
+                    <span className="text-[9px] bg-[#F0EBE3] text-[#7C9070] px-2.5 py-1 rounded-full border border-[#E8E2D9] font-bold uppercase tracking-wider">Dr. Koshia Helpdesk</span>
                   </div>
 
                   {/* Chat window viewport */}
-                  <div className="border border-slate-150 rounded-2xl bg-slate-50 h-[220px] p-4 overflow-y-auto space-y-3.5 flex flex-col justify-end">
+                  <div className="border border-[#E8E2D9] rounded-2xl bg-[#F2EFE9]/30 h-[220px] p-4 overflow-y-auto space-y-3.5 flex flex-col justify-end">
                     <div className="space-y-3 flex flex-col">
                       {chatMessages.map((msg, idx) => (
                         <div
                           key={idx}
-                          className={`max-w-[85%] p-3 rounded-2xl text-xs space-y-1 ${
+                          className={`max-w-[85%] p-3.5 rounded-2xl text-xs space-y-1 ${
                             msg.sender === 'doctor'
-                              ? 'bg-white text-slate-800 border border-slate-100 self-start'
-                              : 'bg-blue-600 text-white self-end'
+                              ? 'bg-white text-[#2C3328] border border-[#E8E2D9] self-start text-left'
+                              : 'bg-[#7C9070] text-[#FDFCF9] self-end text-right'
                           }`}
                         >
                           <p className="font-sans font-medium leading-relaxed">{msg.text}</p>
-                          <span className={`block text-[9px] text-right ${msg.sender === 'doctor' ? 'text-slate-400' : 'text-blue-100'}`}>
+                          <span className={`block text-[9px] ${msg.sender === 'doctor' ? 'text-slate-400' : 'text-slate-200'}`}>
                             {msg.time}
                           </span>
                         </div>
@@ -555,12 +555,12 @@ export default function PortalModal({
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       placeholder="Ask the clinic about products, side-effects, schedules..."
-                      className="flex-1 text-xs font-semibold border border-slate-200 rounded-xl py-2 px-3.5 outline-none focus:border-blue-600 transition-colors bg-white text-slate-800"
+                      className="flex-1 text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 outline-none focus:border-[#7C9070] bg-white text-[#4A443E]"
                     />
                     <button
                       id="chat-send-message-btn"
                       type="submit"
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-sans text-xs font-bold py-2 px-4 rounded-xl shadow-md transition-colors"
+                      className="bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-wider py-2.5 px-5 rounded-xl cursor-pointer"
                     >
                       Send
                     </button>
@@ -571,36 +571,36 @@ export default function PortalModal({
               {/* Sub-view D: ACTIVE BOOKER FORM INSIDE PORTAL */}
               {dashboardTab === 'book' && (
                 <div className="space-y-4 text-left">
-                  <h4 className="font-sans font-bold text-slate-800 text-sm">Schedule New Clinical Consultation</h4>
+                  <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Schedule New Clinical Consultation</h4>
 
                   {isBookSuccess ? (
-                    <div className="bg-emerald-50 border border-emerald-100 p-6 rounded-2xl flex flex-col items-center justify-center text-center space-y-2 animate-in fade-in duration-200">
-                      <div className="bg-emerald-500 text-white p-2 rounded-full">
-                        <Check className="h-6 w-6" />
+                    <div className="bg-emerald-55/60 border border-emerald-200 p-6 rounded-2xl flex flex-col items-center justify-center text-center space-y-2 animate-in fade-in duration-200">
+                      <div className="bg-[#7C9070] text-[#FDFCF9] p-2 rounded-full">
+                        <Check className="h-5 w-5" />
                       </div>
-                      <h4 className="font-sans font-bold text-emerald-800 text-base">Booking Approved!</h4>
-                      <p className="font-sans text-xs text-emerald-600">Your session is now loaded inside your Active Appointments queue.</p>
+                      <h4 className="font-sans font-bold text-emerald-800 text-xs uppercase tracking-wider">Booking Approved</h4>
+                      <p className="font-sans text-[11px] text-emerald-600 leading-normal">Your session is now loaded inside your Active Appointments queue!</p>
                     </div>
                   ) : (
-                    <form onSubmit={handleBookAppointment} className="space-y-3">
+                    <form onSubmit={handleBookAppointment} className="space-y-3.5">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="space-y-1">
-                          <label className="font-sans text-xs font-bold text-slate-600 block">Pick Session Date</label>
+                        <div className="space-y-1.5">
+                          <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Pick Session Date</label>
                           <input
                             type="date"
                             required
                             value={bookForm.date}
                             onChange={(e) => setBookForm({ ...bookForm, date: e.target.value })}
-                            className="w-full text-xs font-semibold border border-slate-200 rounded-xl py-2 px-3 focus:border-blue-600 outline-none bg-white text-slate-800"
+                            className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none bg-white text-[#2C3328]"
                           />
                         </div>
 
-                        <div className="space-y-1">
-                          <label className="font-sans text-xs font-bold text-slate-600 block">Available Time Slot</label>
+                        <div className="space-y-1.5">
+                          <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Available Time Slot</label>
                           <select
                             value={bookForm.timeSlot}
                             onChange={(e) => setBookForm({ ...bookForm, timeSlot: e.target.value })}
-                            className="w-full text-xs font-semibold border border-slate-200 rounded-xl py-2 px-3 focus:border-blue-600 outline-none bg-white text-slate-800"
+                            className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none bg-white text-[#2C3328]"
                           >
                             {TIME_SLOTS.map((t, idx) => (
                               <option key={idx} value={t}>{t}</option>
@@ -609,12 +609,12 @@ export default function PortalModal({
                         </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <label className="font-sans text-xs font-bold text-slate-600 block">Treatment / Clinical Service required</label>
+                      <div className="space-y-1.5">
+                        <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Treatment / Clinical Service required</label>
                         <select
                           value={bookForm.serviceId}
                           onChange={(e) => setBookForm({ ...bookForm, serviceId: e.target.value })}
-                          className="w-full text-xs font-semibold border border-slate-200 rounded-xl py-2 px-3 focus:border-blue-600 outline-none bg-white text-slate-800"
+                          className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none bg-white text-[#2C3328]"
                         >
                           {CLINIC_SERVICES.map((s) => (
                             <option key={s.id} value={s.id}>{s.title} ({s.priceRange})</option>
@@ -622,23 +622,23 @@ export default function PortalModal({
                         </select>
                       </div>
 
-                      <div className="space-y-1">
-                        <label className="font-sans text-xs font-bold text-slate-600 block">Describe Symptoms (Optional)</label>
+                      <div className="space-y-1.5">
+                        <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Describe Symptoms (Optional)</label>
                         <textarea
                           rows={2}
                           value={bookForm.notes}
                           onChange={(e) => setBookForm({ ...bookForm, notes: e.target.value })}
                           placeholder="e.g., severe itching, hair patches loss, acne breakouts on chin area..."
-                          className="w-full text-xs font-semibold border border-slate-200 rounded-xl py-2.5 px-3.5 focus:border-blue-600 outline-none resize-none bg-white text-slate-800"
+                          className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none resize-none bg-white text-[#2C3328]"
                         />
                       </div>
 
                       <button
                         id="portal-create-appt-btn"
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-sans text-xs font-bold py-3 rounded-xl shadow-md cursor-pointer text-center"
+                        className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl cursor-pointer text-center"
                       >
-                        Confirm Appointment Security Guard
+                        Confirm Appointment Slot
                       </button>
                     </form>
                   )}

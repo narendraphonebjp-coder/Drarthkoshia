@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, GraduationCap, Building2, Stethoscope, CheckCircle } from 'lucide-react';
-import { DOCTOR_INFO, CLINIC_STATS } from '../data';
+import { DOCTOR_INFO } from '../data';
 
 interface AboutSectionProps {
   clinicLobbyUrl: string;
@@ -31,56 +31,56 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
   ];
 
   return (
-    <section id="about" className="py-20 bg-slate-50/50 relative overflow-hidden">
+    <section id="about" className="py-24 bg-[#F2EFE9]/30 border-b border-[#E8E2D9] relative overflow-hidden text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Clinic space imagery */}
           <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            {/* Visual borders */}
-            <div className="absolute top-[-20px] left-[-20px] w-24 h-24 border-t-4 border-l-4 border-blue-600 rounded-tl-3xl -z-10" />
-            <div className="absolute bottom-[-20px] right-[-20px] w-24 h-24 border-b-4 border-r-4 border-sky-400 rounded-br-3xl -z-10" />
+            {/* Visual borders in organic sage */}
+            <div className="absolute top-[-15px] left-[-15px] w-20 h-20 border-t-2 border-l-2 border-[#7C9070] rounded-tl-2xl -z-10" />
+            <div className="absolute bottom-[-15px] right-[-15px] w-20 h-20 border-b-2 border-r-2 border-[#6B705C] rounded-br-2xl -z-10" />
 
-            <div className="rounded-3xl overflow-hidden shadow-2xl relative bg-white p-2 border border-slate-100">
+            <div className="rounded-3xl overflow-hidden shadow-lg relative bg-[#FDFCF9] p-2 border border-[#E8E2D9]">
               <img
                 src={clinicLobbyUrl}
                 alt="Koshia Skin Care Clinic Lobby"
-                className="w-full h-auto aspect-[4/3] object-cover rounded-2xl hover:scale-102 transition-transform duration-550"
+                className="w-full h-auto aspect-[4/3] object-cover rounded-2xl hover:scale-102 transition-all duration-550"
                 referrerPolicy="no-referrer"
               />
               
               {/* Overlay Stat Card */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl flex items-center space-x-4">
-                <div className="bg-blue-600 text-white p-3 rounded-xl flex-shrink-0">
-                  <Building2 className="h-6 w-6" />
+              <div className="absolute bottom-6 left-6 right-6 bg-[#FDFCF9]/95 backdrop-blur-md p-4 rounded-xl border border-[#E8E2D9] shadow-md flex items-center space-x-4">
+                <div className="bg-[#7C9070] text-[#FDFCF9] p-3 rounded-lg flex-shrink-0">
+                  <Building2 className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-slate-900 text-sm">State-of-the-Art Operations</h4>
-                  <p className="font-sans text-xs text-slate-500">Suite 201, JP 12th hub, Surendra Mangaldas Rd</p>
+                  <h4 className="font-sans font-bold text-[#2C3328] text-[13px] tracking-tight">Advanced Care Facility</h4>
+                  <p className="font-sans text-[11px] text-[#6B705C]">Ambawadi Area, Ahmedabad</p>
                 </div>
               </div>
             </div>
 
             {/* Glowing effect inside background */}
-            <div className="absolute inset-0 bg-blue-550/5 blur-[50px] rounded-full -z-20" />
+            <div className="absolute inset-0 bg-[#7C9070]/5 blur-[50px] rounded-full -z-20" />
           </div>
 
           {/* Right Column: Bio details */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-2">
-              <span className="font-sans text-xs font-bold text-blue-600 uppercase tracking-widest block">
+              <span className="font-sans text-[10px] font-extrabold text-[#7C9070] uppercase tracking-[0.2em] block">
                 Meet the Physician
               </span>
-              <h2 className="font-sans font-extrabold text-slate-900 text-3xl sm:text-4xl leading-tight">
+              <h2 className="font-serif font-normal text-[#2C3328] text-4xl sm:text-5xl leading-tight tracking-tight">
                 {DOCTOR_INFO.name}
               </h2>
-              <p className="font-sans text-sm font-medium text-slate-400 italic">
+              <div className="font-sans text-xs uppercase tracking-widest text-[#6B705C] font-semibold">
                 {DOCTOR_INFO.title}
-              </p>
+              </div>
             </div>
 
-            <p className="font-sans text-base text-slate-600 leading-relaxed">
+            <p className="font-sans text-sm text-[#4A443E] leading-relaxed italic font-light">
               {DOCTOR_INFO.about}
             </p>
 
@@ -90,14 +90,14 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
                 const CredIcon = cred.icon;
                 return (
                   <div key={idx} className="flex space-x-3 text-left">
-                    <div className="flex-shrink-0 self-start p-1.5 rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
-                      <CredIcon className="h-4.5 w-4.5" />
+                    <div className="flex-shrink-0 self-start p-2 rounded-lg bg-[#F0EBE3] text-[#7C9070] border border-[#E8E2D9]">
+                      <CredIcon className="h-4 w-4" />
                     </div>
                     <div className="space-y-1">
-                      <h3 className="font-sans font-bold text-sm text-slate-900 leading-snug">
+                      <h3 className="font-sans font-bold text-xs text-[#2C3328] leading-snug uppercase tracking-wider">
                         {cred.title}
                       </h3>
-                      <p className="font-sans text-xs text-slate-500 leading-relaxed">
+                      <p className="font-sans text-[11px] text-[#6B705C] leading-relaxed">
                         {cred.desc}
                       </p>
                     </div>
@@ -107,21 +107,21 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
             </div>
 
             {/* Core Values / Commitments */}
-            <div className="p-5.5 rounded-2xl bg-white border border-slate-100/90 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 mt-4">
-              <div className="flex items-center space-x-3">
-                <div className="bg-emerald-50 text-emerald-600 p-2 rounded-full border border-emerald-100">
-                  <CheckCircle className="h-5 w-5" />
+            <div className="p-5 rounded-2xl bg-[#F2EFE9] border border-[#E8E2D9] flex flex-col md:flex-row md:items-center justify-between gap-4 mt-6">
+              <div className="flex items-center space-x-3 text-left">
+                <div className="bg-[#F0EBE3] text-[#7C9070] p-2 rounded-full border border-[#E8E2D9]">
+                  <CheckCircle className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-sm text-slate-900">Zero Commercial Up-selling</h4>
-                  <p className="font-sans text-xs text-slate-500">Only honest scientific skincare solutions aligned with guidelines.</p>
+                  <h4 className="font-sans font-bold text-xs text-[#2C3328] uppercase tracking-wider">Zero Commercial Up-selling</h4>
+                  <p className="font-sans text-[11px] text-[#6B705C]">Only honest scientific skincare solutions aligned with guidelines.</p>
                 </div>
               </div>
               <a
                 href="#contact"
-                className="bg-sky-50 text-sky-800 hover:bg-sky-100 transition-colors font-sans text-xs font-bold px-4.5 py-2.5 rounded-xl border border-sky-100/50 text-center self-start md:self-auto"
+                className="bg-[#2C3328] text-[#FDFCF9] hover:bg-[#3D4637] transition-all font-sans text-xs font-bold uppercase tracking-widest px-5 py-3 rounded-lg text-center cursor-pointer"
               >
-                Find Clinic Location
+                Find Clinic
               </a>
             </div>
 

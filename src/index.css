@@ -1,1 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Utilities for Natural Tones */
+:root {
+  background-color: #FDFCF9;
+  color: #4A443E;
+}
+
+body {
+  background-color: #FDFCF9;
+  color: #4A443E;
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar matching natural tones */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FDFCF9;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8E2D9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7C9070;
+}
