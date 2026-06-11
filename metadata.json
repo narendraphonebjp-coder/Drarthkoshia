@@ -1,0 +1,6 @@
+{
+  "name": "Dr. Arth Koshia's Dermatology Clinic",
+  "description": "High-end clinical and aesthetic skin care website for Dr. Arth Koshia, M.D. Dermatology in Ahmedabad, featuring online appointment booking, customer portal, reviews, and clinical details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
