@@ -18,7 +18,7 @@ export default function Footer() {
 
   const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About Dr. Arth', href: '#about' },
+    { name: 'About Dr. Agarwal', href: '#about' },
     { name: 'Treatments', href: '#services' },
     { name: 'Patient Reviews', href: '#reviews' },
     { name: 'Clinic Address', href: '#contact' }
@@ -41,13 +41,13 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-serif text-[#FDFCF9] text-lg leading-tight tracking-tight">
-                  Koshia <span className="font-sans font-extrabold uppercase text-[10px] text-[#7C9070] block tracking-widest pt-0.5">Skin &amp; Laser Clinic</span>
+                  Agarwal <span className="font-sans font-extrabold uppercase text-[10px] text-[#7C9070] block tracking-widest pt-0.5">Plastic &amp; Cosmetic Clinic</span>
                 </span>
               </div>
             </div>
 
             <p className="font-sans text-xs text-[#E8E2D9]/70 leading-relaxed">
-              Led by {DOCTOR_INFO.name}, M.D. Dermatology (Gold Medalist), we are Ahmedabad's premier destination for clinical dermatology, aesthetic lasers, and modern hair transplants.
+              Led by {DOCTOR_INFO.name}, we are Kolkata's premier studio for high-definition body sculpting, custom mommy makeovers, advanced rhinoplasty, and pediatric cleft care.
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export default function Footer() {
               Clinic Contact
             </h4>
             <div className="space-y-2.5 text-xs text-[#E8E2D9]/70 leading-relaxed">
-              <p>Suite 201, JP 12th Business Hub, Surendra Mangaldas Rd, opposite Raj Stationers, Ambawadi, Ahmedabad</p>
+              <p>Flat 3103, URBANA Tower, 783 Anandapur Road, Kolkata, West Bengal 700107</p>
               <p className="font-semibold text-[#FDFCF9]">Helpline: {DOCTOR_INFO.phone}</p>
               <p className="text-[10px] text-[#A5A58D]">Please complete an online reservation or sign in to patient portal prior to visiting.</p>
             </div>
@@ -85,10 +85,10 @@ export default function Footer() {
           {/* Newsletter Subscribe form Column */}
           <div className="space-y-4">
             <h4 className="font-sans text-[10px] font-bold text-[#FDFCF9] uppercase tracking-wider">
-              Skincare Newsletter
+              Clinical Updates
             </h4>
             <p className="font-sans text-xs text-[#E8E2D9]/70 leading-relaxed">
-              Subscribe to get monthly skin care tips, therapeutic laser announcements, and seasonal treatment offerings from Dr. Arth.
+              Subscribe to get monthly cosmetic surgery guides, post-operative care tips, and cleft care announcements from Dr. Agarwal.
             </p>
 
             {isSuccess ? (
@@ -122,11 +122,11 @@ export default function Footer() {
         {/* Divider and disclaimer */}
         <div className="border-t border-[#3D4637] pt-8 mt-12 text-center space-y-6">
           <p className="font-sans text-[10px] text-[#A5A58D] leading-relaxed max-w-4xl mx-auto">
-            <strong>Medical Disclaimer:</strong> The clinical, aesthetic, and surgical data displayed on this website corresponds to a portfolio representation for {DOCTOR_INFO.clinicName}. All informational summaries, media assets, patient reviews, and mock prescriptions do not substitute professional medical opinion, direct clinical diagnosis, or physical therapeutic evaluation. Seek a physical board-certified physician or qualified dermatologist for personalized symptoms evaluation.
+            <strong>Medical Disclaimer:</strong> The clinical, aesthetic, and surgical data displayed on this website corresponds to a portfolio representation for {DOCTOR_INFO.clinicName}. All informational summaries, media assets, patient reviews, and mock prescriptions do not substitute professional medical opinion, direct clinical diagnosis, or physical therapeutic evaluation. Seek a physical board-certified physician or qualified plastic surgeon for personalized symptoms evaluation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A5A58D]/70">
             <span>© 2026 {DOCTOR_INFO.clinicName}. All rights reserved.</span>
-            <span>Created for Dr. Arth Koshia M.D. Dermatology • Ambawadi, Ahmedabad</span>
+            <span>Created for Dr. Akhilesh Agarwal • Anandapur, Kolkata</span>
           </div>
         </div>
 

@@ -10,23 +10,23 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
   const credentials = [
     {
       icon: GraduationCap,
-      title: "M.D. Dermatology, Venereology & Leprosy (Gold Medalist)",
-      desc: "Post-graduate specialization in cellular skin pathology, advanced therapeutics, and laser medicine."
+      title: "M.B.B.S, M.S., M.Ch (Gold Medalist)",
+      desc: "Post-graduate super-specialization in plastic and aesthetic surgery, advanced microvascular techniques, and body contouring."
     },
     {
       icon: Award,
-      title: "Board-Certified Aesthetic Surgeon",
-      desc: "Extensive hands-on training in FUE Hair Transplant surgery, Botox/Fillers liquid sculpting, and micro-needling RF."
+      title: "Board-Certified Plastic Surgeon",
+      desc: "Extensive clinical fellowships at the world-renowned Mayo Clinic, Rochester, USA and Chang Gung Memorial Hospital, Taiwan."
     },
     {
       icon: Building2,
-      title: "Modern Clinical Infrastructure",
-      desc: "Fully equipped with modern US-FDA approved machinery, triple wavelength lasers, and high-sterilization standards."
+      title: "Modern Surgical Infrastructure",
+      desc: "Fully equipped with modern operating theaters, advanced liposuction systems, and high sterile medical standards."
     },
     {
       icon: Stethoscope,
-      title: "Member of Premier Associations",
-      desc: "Proud, active member of Indian Association of Dermatologists, Venereologists and Leprologists (IADVL)."
+      title: "Premier Professional Member",
+      desc: "Proud active member of leading national and international plastic, cosmetic, and reconstructive surgery associations."
     }
   ];
 
@@ -45,7 +45,7 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
             <div className="rounded-3xl overflow-hidden shadow-lg relative bg-[#FDFCF9] p-2 border border-[#E8E2D9]">
               <img
                 src={clinicLobbyUrl}
-                alt="Koshia Skin Care Clinic Lobby"
+                alt="Dr. Akhilesh Agarwal Clinic Studio"
                 className="w-full h-auto aspect-[4/3] object-cover rounded-2xl hover:scale-102 transition-all duration-550"
                 referrerPolicy="no-referrer"
               />
@@ -57,7 +57,7 @@ export default function AboutSection({ clinicLobbyUrl }: AboutSectionProps) {
                 </div>
                 <div>
                   <h4 className="font-sans font-bold text-[#2C3328] text-[13px] tracking-tight">Advanced Care Facility</h4>
-                  <p className="font-sans text-[11px] text-[#6B705C]">Ambawadi Area, Ahmedabad</p>
+                  <p className="font-sans text-[11px] text-[#6B705C]">Anandapur Area, Kolkata</p>
                 </div>
               </div>
             </div>

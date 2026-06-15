@@ -8,7 +8,7 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ onBookService, servicesImgUrl }: ServicesSectionProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'clinical' | 'aesthetic' | 'hair'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'clinical' | 'aesthetic'>('all');
 
   const filteredServices = CLINIC_SERVICES.filter(service => {
     if (activeTab === 'all') return true;
@@ -25,10 +25,9 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
   };
 
   const categories = [
-    { id: 'all', name: 'All Treatments' },
-    { id: 'clinical', name: 'Clinical Dermatology' },
-    { id: 'aesthetic', name: 'Aesthetic Lasers & Peels' },
-    { id: 'hair', name: 'Hair Loss & Restoration' }
+    { id: 'all', name: 'All Services' },
+    { id: 'clinical', name: 'Clinical & Reconstructive' },
+    { id: 'aesthetic', name: 'Cosmetic & Aesthetic' }
   ];
 
   return (
@@ -76,13 +75,13 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
 
             <div className="relative z-10 space-y-3 text-left">
               <span className="bg-[#7C9070]/90 text-[#FDFCF9] font-bold text-[9px] uppercase tracking-widest px-3 py-1 rounded-full w-fit block">
-                US-FDA Laser Tech
+                Gold Standard Safety
               </span>
               <h3 className="font-serif font-normal text-2xl leading-tight text-[#FDFCF9]">
-                Painless Cooling Lasers
+                Artistic Precision
               </h3>
               <p className="font-sans text-xs text-[#E8E2D9] leading-relaxed font-light">
-                Our clinic features triple-wavelength cooling lasers that treat hyperpigmentation, body hair, or acne scars comfortably with zero recovery downtime.
+                Our studio features highly specialized clinical systems, high-sterility operating suites, and custom implants aligned with elite international medical criteria.
               </p>
             </div>
 
@@ -106,7 +105,7 @@ export default function ServicesSection({ onBookService, servicesImgUrl }: Servi
                       {getIcon(service.icon)}
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-wider text-[#6B705C] px-3 py-1 rounded-full bg-[#F2EFE9]">
-                      {service.category === 'clinical' ? 'Clinical Derm' : service.category === 'aesthetic' ? 'Cosmetic/Laser' : 'Hair Restoration'}
+                      {service.category === 'clinical' ? 'Clinical & Trauma' : 'Aesthetic/Cosmetic'}
                     </span>
                   </div>
 

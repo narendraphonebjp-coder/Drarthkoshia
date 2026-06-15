@@ -15,16 +15,16 @@ import { DOCTOR_INFO, CLINIC_SERVICES } from './data';
 
 // Importing generated assets with TS-ignore for seamless Vite asset handling
 // @ts-ignore
-import doctorPortraitImg from './assets/images/doctor_portrait_1781173266736.png';
+import doctorPortraitImg from './assets/images/doctor_portrait_1781532451482.jpg';
 // @ts-ignore
-import clinicLobbyImg from './assets/images/clinic_lobby_1781173290652.png';
+import clinicLobbyImg from './assets/images/clinic_lobby_1781532470305.jpg';
 // @ts-ignore
-import dermalTreatmentImg from './assets/images/dermal_treatment_1781173307786.png';
+import dermalTreatmentImg from './assets/images/dermal_treatment_1781532488482.jpg';
 
 export default function App() {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [portalUserName, setPortalUserName] = useState<string | null>(null);
-  const [prefilledServiceId, setPrefilledServiceId] = useState<string>('acne-scars');
+  const [prefilledServiceId, setPrefilledServiceId] = useState<string>('rhinoplasty');
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   // Simulated Video Player States
@@ -76,7 +76,7 @@ export default function App() {
       <main className="flex-1">
         {/* Hero Section styled like reference mockup */}
         <Hero
-          onBookAppointment={() => handleBookService('acne-scars')}
+          onBookAppointment={() => handleBookService('rhinoplasty')}
           onPlayVideo={() => setIsVideoOpen(true)}
           doctorPortraitUrl={doctorPortraitImg}
         />
@@ -122,7 +122,7 @@ export default function App() {
             <div className="p-4 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-left">
               <div>
                 <h3 className="font-sans font-bold text-sm text-slate-100">Virtual Clinic Tour &amp; Consultation</h3>
-                <p className="font-sans text-[10px] text-slate-400">Walking inside {DOCTOR_INFO.clinicName} (Ambawadi, Ahmedabad)</p>
+                <p className="font-sans text-[10px] text-slate-400">Walking inside {DOCTOR_INFO.clinicName} (Anandapur, Kolkata)</p>
               </div>
               <button
                 id="close-video-modal"
@@ -166,9 +166,9 @@ export default function App() {
 
               {/* Text overlay introducing the doctor */}
               <div className="absolute bottom-16 left-6 right-6 text-left space-y-1">
-                <span className="text-xs font-bold text-blue-300">Featured Chapter: Advanced Aesthetic Lasers</span>
+                <span className="text-xs font-bold text-blue-300">Featured Chapter: Advanced Reconstructive Surgery</span>
                 <p className="text-xs text-slate-300 leading-normal max-w-lg">
-                  Watch Dr. Arth Koshia demonstrate cooling laser skin correction. Our procedures ensure painless, uniform acne scar reductions for residents in Ahmedabad.
+                  Watch Dr. Akhilesh Agarwal demonstrate advanced rhinoplasty facial reshaping. Our surgical procedures ensure safe, beautiful, balanced results for patients in Kolkata.
                 </p>
               </div>
             </div>

@@ -6,23 +6,23 @@ export default function Features() {
     {
       id: "step-1",
       title: "1. Easy Booking",
-      desc: "Instantly schedule your clinic visit at Ambawadi or easily book via our secure patient portal.",
+      desc: "Instantly schedule your clinic visit at Anandapur or easily book via our secure patient portal.",
       icon: Search,
       bgColor: "bg-[#F0EBE3] text-[#7C9070] border-[#E8E2D9]",
       iconColor: "text-[#7C9070]"
     },
     {
       id: "step-2",
-      title: "2. Expert Skin Analysis",
-      desc: "Dr. Arth Koshia reviews your clinical symptoms, lifestyle factors, and skin/hair composition.",
+      title: "2. Expert Analysis",
+      desc: "Dr. Akhilesh Agarwal reviews your clinical history, body composition, and aesthetic surgical goals.",
       icon: UserCheck,
       bgColor: "bg-[#F2EFE9] text-[#6B705C] border-[#E8E2D9]",
       iconColor: "text-[#6B705C]"
     },
     {
       id: "step-3",
-      title: "3. Customized Therapy",
-      desc: "Receive world-class FDA lasers, optimized medical creams, or targeted hair regeneration therapies.",
+      title: "3. Customized Surgery",
+      desc: "Receive world-class surgical precision, elite silicone volume implants, or tailored contour therapies.",
       icon: CalendarDays,
       bgColor: "bg-[#F0EBE3] text-[#7C9070] border-[#E8E2D9]",
       iconColor: "text-[#7C9070]"

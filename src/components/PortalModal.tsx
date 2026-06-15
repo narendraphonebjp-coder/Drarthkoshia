@@ -18,7 +18,7 @@ export default function PortalModal({
   onLoginSuccess,
   portalUserName,
   onLogout,
-  initialServiceId = 'acne-scars'
+  initialServiceId = 'rhinoplasty'
 }: PortalModalProps) {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup' | 'dashboard'>(portalUserName ? 'dashboard' : 'signin');
   const [authData, setAuthData] = useState({ name: '', email: '', phone: '', password: '' });
@@ -34,9 +34,9 @@ export default function PortalModal({
       phone: "9876543210",
       date: "2026-06-25",
       timeSlot: "11:30 AM",
-      serviceId: "acne-scars",
-      treatmentType: "Advanced Acne & Scar Treatment",
-      notes: "Follow up review of skin scarring from ancient acne breakouts.",
+      serviceId: "rhinoplasty",
+      treatmentType: "Rhinoplasty Nose Surgery",
+      notes: "Follow up review of nose structural alignment post-rhinoplasty.",
       status: "confirmed"
     }
   ]);
@@ -55,7 +55,7 @@ export default function PortalModal({
   const [chatMessages, setChatMessages] = useState<Array<{ sender: 'patient' | 'doctor'; text: string; time: string }>>([
     {
       sender: 'doctor',
-      text: "Hello! Welcome to Dr. Arth Koshia's Patient Portal. You can ask queries about your healing post-treatment care products here. How can our clinic team assist you today?",
+      text: "Hello! Welcome to Dr. Akhilesh Agarwal's Patient Portal. You can ask queries about your healing, post-operative care, or procedures here. How can our clinic team assist you today?",
       time: "10:15 AM"
     }
   ]);
@@ -99,7 +99,7 @@ export default function PortalModal({
     const newAppt: Appointment = {
       id: `appt-${Date.now()}`,
       patientName: portalUserName || "Arjun Patel",
-      email: authData.email || "patient@koshia.com",
+      email: authData.email || "patient@drakhileshagarwal.com",
       phone: authData.phone || "+91 99999 11111",
       date: bookForm.date,
       timeSlot: bookForm.timeSlot,
@@ -132,7 +132,7 @@ export default function PortalModal({
       const respTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       const docMsg = {
         sender: 'doctor' as const,
-        text: `Thank you for your message. Dr. Arth Koshia is currently in consultation sessions. Our clinical helpdesk coordinates medical inputs immediately. For emergency assistance regarding post-treatment redness, please contact our helpline number ${DOCTOR_INFO.phone}.`,
+        text: `Thank you for your message. Dr. Akhilesh Agarwal is currently in consultation sessions. Our clinical helpdesk coordinates medical inputs immediately. For emergency assistance regarding post-treatment care, please contact our helpline number ${DOCTOR_INFO.phone}.`,
         time: respTime
       };
       setChatMessages(prev => [...prev, docMsg]);
@@ -400,7 +400,7 @@ export default function PortalModal({
                   }`}
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
-                  <span>Ask Dr. Koshia</span>
+                  <span>Ask Dr. Agarwal</span>
                 </button>
                 <button
                   onClick={() => setDashboardTab('book')}
@@ -474,7 +474,7 @@ export default function PortalModal({
                     <div className="border-b border-dashed border-[#E8E2D9] pb-3 flex items-center justify-between text-xs">
                       <div>
                         <span className="font-bold text-[#2C3328] block">{DOCTOR_INFO.clinicName}</span>
-                        <span className="text-[#6B705C]">Ambawadi, Ahmedabad</span>
+                        <span className="text-[#6B705C]">Anandapur, Kolkata</span>
                       </div>
                       <div className="text-right text-[#6B705C]">
                         <span className="font-mono text-[#2C3328] block">REF: RX-2026-9912</span>
@@ -491,21 +491,21 @@ export default function PortalModal({
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Diagnosis</span>
-                          <span className="text-xs font-semibold text-[#2C3328]">Severe Acne Vulgaris &amp; Scar Tissue</span>
+                          <span className="text-xs font-semibold text-[#2C3328]">Aesthetic Rhinoplasty Realignment</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Prescribing Physician</span>
+                          <span className="text-[9px] text-[#A5A58D] uppercase font-bold block">Prescribing Surgeon</span>
                           <span className="text-xs font-semibold text-[#2C3328]">{DOCTOR_INFO.name}</span>
                         </div>
                       </div>
 
                       <div className="bg-[#F2EFE9]/40 border border-[#E8E2D9] p-4 rounded-xl space-y-2">
-                        <span className="text-[10px] text-[#7C9070] font-extrabold uppercase tracking-widest block">Regimen &amp; Medication Plan</span>
+                        <span className="text-[10px] text-[#7C9070] font-extrabold uppercase tracking-widest block">Surgical Recovery Plan</span>
                         <ul className="text-xs text-[#4A443E] space-y-2 list-disc pl-4.5 font-light">
-                          <li><strong>Cap. Isotretinoin 10mg</strong> - Once daily after dinner (for sebum suppression)</li>
-                          <li><strong>Azelaic Acid 15% Gel</strong> - Soft pea-sized layer on hyperpigmentation, morning hours</li>
-                          <li><strong>Fractional CO2 Laser Therapy</strong> - 3 sessions scheduled (spaced 4 weeks apart)</li>
-                          <li><strong>Pore Cleansing Mineral Sunscreen SPF 50+</strong> - Always apply during outdoor hours</li>
+                          <li><strong>Analgesics &amp; Anti-inflammatory</strong> - Once daily after meals (for swelling control)</li>
+                          <li><strong>Silicone Scar Gel</strong> - Gentle microvascular ointment cover, morning and night</li>
+                          <li><strong>Nasal Splint Alignment</strong> - Keep in place styled correctly for 7 days</li>
+                          <li><strong>Hydration and Safe Wash</strong> - Clean surrounding facial nodes with physiological saline</li>
                         </ul>
                       </div>
                     </div>
@@ -523,7 +523,7 @@ export default function PortalModal({
                 <div className="space-y-4 text-left">
                   <div className="flex items-center justify-between">
                     <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Secure Message Workspace</h4>
-                    <span className="text-[9px] bg-[#F0EBE3] text-[#7C9070] px-2.5 py-1 rounded-full border border-[#E8E2D9] font-bold uppercase tracking-wider">Dr. Koshia Helpdesk</span>
+                    <span className="text-[9px] bg-[#F0EBE3] text-[#7C9070] px-2.5 py-1 rounded-full border border-[#E8E2D9] font-bold uppercase tracking-wider">Dr. Agarwal Helpdesk</span>
                   </div>
 
                   {/* Chat window viewport */}
@@ -623,12 +623,12 @@ export default function PortalModal({
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Describe Symptoms (Optional)</label>
+                        <label className="font-sans text-[11px] font-bold text-[#6B705C] uppercase tracking-wider block">Describe Symptoms or Surgical Request</label>
                         <textarea
                           rows={2}
                           value={bookForm.notes}
                           onChange={(e) => setBookForm({ ...bookForm, notes: e.target.value })}
-                          placeholder="e.g., severe itching, hair patches loss, acne breakouts on chin area..."
+                          placeholder="e.g., mommy makeover consult, nose reshaping revision, scar revision, post-trauma assessment..."
                           className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none resize-none bg-white text-[#2C3328]"
                         />
                       </div>

@@ -31,7 +31,7 @@ export default function ContactSection() {
             Our Location &amp; Contact Desk
           </h2>
           <p className="font-sans text-xs text-[#6B705C] leading-relaxed max-w-2xl mx-auto italic font-light">
-            Conveniently located at Ambawadi area in JP 12th Business Hub, Ahmedabad. Send us an inquiry or visit us during working hours.
+            Conveniently located at Urbana Tower in Anandapur, Kolkata. Send us an inquiry or visit us during working hours.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function ContactSection() {
                       {DOCTOR_INFO.address}
                     </p>
                     <a
-                      href="https://maps.google.com/?q=Dr.+Arth+Koshia,+201,+JP+12th+Business+Hub,+Surendra+Mangaldas+Rd,+Ambawadi,+Ahmedabad"
+                      href="https://maps.google.com/?q=Dr.+Akhilesh+Agarwal,+Urbana+Tower,+783+Anandapur+Road,+Anandapur,+Kolkata,+West+Bengal+700107"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block font-sans text-xs font-bold text-[#7C9070] hover:underline pt-1"
@@ -120,7 +120,7 @@ export default function ContactSection() {
             {/* Quick Note */}
             <div className="p-4.5 rounded-2xl bg-[#F2EFE9] border border-[#E8E2D9] text-left">
               <p className="font-sans text-[10px] text-[#6B705C] leading-normal font-light italic">
-                <strong>Emergency Support:</strong> Dr. Koshia coordinates on-call surgical skin emergencies outside standard working hours.
+                <strong>Emergency Support:</strong> Our team coordinates on-call surgical and trauma reconstructive skin emergencies outside standard working hours.
               </p>
             </div>
 
@@ -137,7 +137,7 @@ export default function ContactSection() {
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Dr. Arth Koshia Dermatology Clinic Location - Ambawadi Ahmedabad"
+              title="Dr. Akhilesh Agarwal Plastic Surgery Clinic Location - Anandapur Kolkata"
               className="absolute inset-0"
             />
           </div>
@@ -156,7 +156,7 @@ export default function ContactSection() {
                     <Check className="h-5 w-5" />
                   </div>
                   <h4 className="font-sans font-bold text-emerald-800 text-xs uppercase tracking-wider">Inquiry Received</h4>
-                  <p className="font-sans text-[11px] text-emerald-600 font-light leading-normal">Our desk team in Ambawadi will contact you shortly.</p>
+                  <p className="font-sans text-[11px] text-emerald-600 font-light leading-normal">Our desk team in Kolkata will contact you shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleInquirySubmit} className="space-y-3 mt-4">

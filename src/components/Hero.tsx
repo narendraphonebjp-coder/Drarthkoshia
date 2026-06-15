@@ -26,7 +26,7 @@ export default function Hero({ onBookAppointment, onPlayVideo, doctorPortraitUrl
             
             {/* Tagline / Badge */}
             <div className="inline-block px-4 py-2 bg-[#F0EBE3] rounded-full text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#7C9070] w-fit">
-              #1 Rated Dermatologist &amp; Laser Clinic in Ahmedabad
+              #1 Rated Plastic &amp; Cosmetic Surgery Clinic in Kolkata
             </div>
 
             {/* Heading mimicking the structure of the mock */}
@@ -37,7 +37,7 @@ export default function Hero({ onBookAppointment, onPlayVideo, doctorPortraitUrl
 
             {/* Customized premium subtext */}
             <p className="font-sans text-sm sm:text-base text-[#6B705C] leading-relaxed max-w-xl italic font-light">
-              Led by Dr. Arth Koshia, M.D. (Gold Medalist), we specialize in advanced US-FDA lasers, scar revision, pain-free hair transplants, and therapeutic skin healthcare in Ahmedabad.
+              Led by Dr. Akhilesh Agarwal, Gold Medalist (MBBS, MS, M.Ch), we specialize in high-definition liposuction, mommy makeovers, advanced rhinoplasty, and pediatric reconstructive care in Kolkata.
             </p>
 
             {/* Action Buttons mimicking the mock call-to-actions */}
@@ -67,11 +67,11 @@ export default function Hero({ onBookAppointment, onPlayVideo, doctorPortraitUrl
             {/* Small Quick Trusts */}
             <div className="grid grid-cols-3 gap-4 xl:gap-8 pt-6 border-t border-[#E8E2D9]">
               <div className="flex flex-col space-y-1">
-                <span className="font-serif font-medium text-[#2C3328] text-2xl xl:text-3xl">8+ <span className="text-[#7C9070] italic">Yrs</span></span>
+                <span className="font-serif font-medium text-[#2C3328] text-2xl xl:text-3xl">10+ <span className="text-[#7C9070] italic">Yrs</span></span>
                 <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#6B705C]">Experience</span>
               </div>
               <div className="flex flex-col space-y-1">
-                <span className="font-serif font-medium text-[#2C3328] text-2xl xl:text-3xl">9,500+</span>
+                <span className="font-serif font-medium text-[#2C3328] text-2xl xl:text-3xl">1,500+</span>
                 <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#6B705C]">Happy Patients</span>
               </div>
               <div className="flex flex-col space-y-1">
@@ -81,7 +81,7 @@ export default function Hero({ onBookAppointment, onPlayVideo, doctorPortraitUrl
                     <Star className="h-4.5 w-4.5 fill-current" />
                   </div>
                 </div>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#6B705C]">380+ Reviews</span>
+                <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-[#6B705C]">150+ Reviews</span>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ export default function Hero({ onBookAppointment, onPlayVideo, doctorPortraitUrl
             <div className="relative overflow-hidden w-full max-w-[380px] rounded-[36px] bg-[#FDFCF9]/10 backdrop-blur-sm p-2 shadow-2xl border border-[#FDFCF9]/20">
               <img
                 src={doctorPortraitUrl}
-                alt="Dr. Arth Koshia portrait"
+                alt="Dr. Akhilesh Agarwal portrait"
                 className="w-full h-auto aspect-square object-cover rounded-[28px] bg-[#F2EFE9] scale-102 hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />

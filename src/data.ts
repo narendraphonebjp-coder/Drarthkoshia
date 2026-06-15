@@ -1,126 +1,118 @@
 import { Service, Review, ClinicStats } from './types';
 
 export const DOCTOR_INFO = {
-  name: "Dr. Arth Koshia",
-  title: "M.D. Dermatology, Venereology & Leprosy (MBBS)",
-  specialty: "Consultant Dermatologist & Aesthetic Laser Specialist",
-  about: "Dr. Arth Koshia is a highly respected, board-certified dermatologist and hair transplant surgeon based in Ahmedabad. With years of rigorous training and clinical experience, he specialize in treating complex clinical skin disorders, advanced laser procedures, skin rejuvenation, and modern hair restoration techniques. He is renowned across Gujarat for his precise approach, honest guidance, and warm, gentle patient-centric care.",
-  clinicName: "Koshia Skin Care & Aesthetic Clinic",
-  address: "Suite 201, JP 12th Business Hub, Surendra Mangaldas Rd, opposite Raj Stationers, Ambawadi, Ahmedabad, Gujarat 380015",
-  shortAddress: "Ambawadi, Ahmedabad",
-  phone: "+91 94267 77271", // Real listing phone number is usually formatted beautifully!
-  email: "info@koshiaskincare.com",
+  name: "Dr. Akhilesh Agarwal",
+  title: "MBBS, MS (Surgery), M.Ch. (Plastic & Reconstructive Surgery)",
+  specialty: "Gold Medalist Plastic, Cosmetic & Reconstructive Surgeon",
+  about: "Dr. Akhilesh Agarwal is a highly accomplished, board-certified plastic, cosmetic, and reconstructive surgeon based in Kolkata. A Gold Medalist in MBBS, he completed his MS (Surgery) and M.Ch. (Plastic Surgery) from the prestigious Medical College, Kolkata. Dr. Agarwal has visited world-renowned institutes to refine his expertise, including Chang Gung Memorial Hospital in Taiwan for advanced microvascular reconstructive surgery, and the Mayo Clinic in Rochester, USA, in the department of Aesthetic & Reconstructive Breast Surgery. Renowned for his surgical artistry and patient-focused approach, he balances meticulous clinical safety with stunning, natural transformations. He is also committed to humanitarian care, regularly volunteering with Repose Clinic and Smile Train to provide free cleft surgeries.",
+  clinicName: "Dr. Akhilesh Agarwal's Plastic & Cosmetic Surgery Clinic",
+  address: "Flat 3103, URBANA Tower, 783 Anandapur Road, Kolkata, West Bengal 700107",
+  shortAddress: "Anandapur, Kolkata",
+  phone: "+91 62915 72182",
+  email: "akhil2u@rediffmail.com",
   workingHours: [
-    { days: "Monday - Saturday", hours: "11:00 AM - 02:00 PM , 04:30 PM - 08:30 PM" },
-    { days: "Sunday", hours: "Closed / Emergency On-Call" }
+    { days: "Monday - Saturday", hours: "10:00 AM - 07:00 PM" },
+    { days: "Sunday", hours: "Closed / Emergency Reconstructions" }
   ],
-  googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.97914488318!2d72.54519989999999!3d23.0245464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85b69ffe8d5f%3A0x3d40c592f729f9ea!2sDr.%20Arth%20Koshia%2C%20M.D.%20Dermatology!5e0!3m2!1sen!2sin!4v1718105000000!5m2!1sen!2sin"
+  googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.234381335965!2d88.406981!3d22.5141643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276a7e0ed3659%3A0xe510b61cd7db084c!2sUrbana!5e0!3m2!1sen!2sin!4v1718105000000!5m2!1sen!2sin"
 };
 
 export const CLINIC_STATS: ClinicStats = {
-  experienceYears: 8,
-  happyPatients: 9500,
+  experienceYears: 10,
+  happyPatients: 1500,
   googleRating: 4.9,
-  reviewCount: 384
+  reviewCount: 150
 };
 
 export const CLINIC_SERVICES: Service[] = [
   {
-    id: "acne-scars",
-    title: "Advanced Acne & Scar Treatment",
-    description: "Personalized medical acne therapies matched with state-of-the-art scar reduction using Fractional CO2 lasers, Microneedling RF (MNRF), and customized chemical peels.",
+    id: "rhinoplasty",
+    title: "Rhinoplasty Nose Surgery",
+    description: "Advanced aesthetic nose reshaping designed with absolute mathematical and artistic facial balance, correcting structural deviations, breathing issues, or cartilage alignment.",
     icon: "Sparkles",
-    category: "clinical",
-    priceRange: "₹1,500 - ₹6,000",
-    duration: "45 mins"
+    category: "aesthetic",
+    priceRange: "₹65,000 - ₹1,40,000",
+    duration: "120 mins"
   },
   {
-    id: "hair-restoration",
-    title: "PRP & GFC Hair Restoration",
-    description: "Highly effective Platelet Rich Plasma (PRP) and Growth Factor Concentrate (GFC) therapies to arrest hair thinning, stimulate dormant follicles, and trigger cellular scalp repair.",
-    icon: "Activity",
-    category: "hair",
-    priceRange: "₹3,500 - ₹8,000",
-    duration: "60 mins"
-  },
-  {
-    id: "clinical-derm",
-    title: "Clinical Skin Consultations",
-    description: "Accurate diagnosis and evidence-based treatments for acute and chronic conditions including Eczema, Psoriasis, fungal infections, Melasma, Vitiligo, and pediatric skin concerns.",
-    icon: "HeartPulse",
-    category: "clinical",
-    priceRange: "₹600 - ₹1,200",
-    duration: "20 mins"
-  },
-  {
-    id: "lasers",
-    title: "Triple Wavelength Laser Hair Reduction",
-    description: "US-FDA approved painless cooling lasers designed for safe, permanent hair reduction on Indian skin types with customized intensity levels across sessions.",
+    id: "liposuction",
+    title: "High-Definition Liposuction",
+    description: "Targeted removal of persistent subcutaneous body fat using ultrasonic and power-assisted technologies, highlighting muscle definitions and contouring localized curves.",
     icon: "Zap",
     category: "aesthetic",
-    priceRange: "₹2,000 - ₹9,500",
-    duration: "30-90 mins"
+    priceRange: "₹50,000 - ₹1,80,000",
+    duration: "90 mins"
   },
   {
-    id: "anti-aging",
-    title: " Botox, Fillers & Anti-Aging",
-    description: "Minimally invasive wrinkle reduction, cheeks and lips liquid volume sculpting, and collagen-boosting therapies delivered with natural-looking, artistic precision.",
+    id: "mommy-makeover",
+    title: "Mommy Makeover Program",
+    description: "A comprehensive, personal combination of abdominoplasty (tummy tuck) and breast lift or augmentation, restoring volume and elasticity post-pregnancy or weight loss.",
     icon: "Smile",
     category: "aesthetic",
-    priceRange: "₹8,000 - ₹22,000",
-    duration: "45 mins"
+    priceRange: "₹1,20,000 - ₹2,50,000",
+    duration: "180 mins"
   },
   {
-    id: "skin-brightening",
-    title: "Laser Carbon Peel & Glow Therapy",
-    description: "Also known as the Hollywood Peel. Instantly targets blemishes, dirt, pores, and hyperpigmentation using carbon cream and Nd:YAG laser for uniform light reflection.",
+    id: "reconstructive-trauma",
+    title: "Trauma Reconstruction & Cleft Care",
+    description: "Highly specialized microvascular surgery restoring function and aesthetic appearance after traumatic tissue losses, burns, facial fractures, or cleft lips.",
+    icon: "HeartPulse",
+    category: "clinical",
+    priceRange: "₹40,000 - ₹1,50,000",
+    duration: "150 mins"
+  },
+  {
+    id: "breast-surgery",
+    title: "Breast Lift & Augmentation",
+    description: "Safe, customized breast volume and contour enhancements using FDA-approved cohesive silicone implants or natural fat transfer, tailored to individual desires.",
     icon: "Sun",
     category: "aesthetic",
-    priceRange: "₹3,000 - ₹5,500",
-    duration: "40 mins"
+    priceRange: "₹90,000 - ₹2,20,000",
+    duration: "90 mins"
+  },
+  {
+    id: "vitiligo-surgery",
+    title: "Vitiligo Grafting Surgery",
+    description: "Advanced cellular grafting techniques such as Melanocyte Transfer (MKG) and ultra-thin epidermal grafting, safely restoring natural pigment to vitiligo patches.",
+    icon: "Activity",
+    category: "clinical",
+    priceRange: "₹15,000 - ₹50,000",
+    duration: "75 mins"
   }
 ];
 
 export const CLINIC_REVIEWS: Review[] = [
   {
     id: "rev-1",
-    authorName: "Ketan Patel",
+    authorName: "Madhuri Banerjee",
     rating: 5,
     relativeTimeDescription: "2 weeks ago",
-    text: "Dr. Arth Koshia is extremely polite and highly knowledgeable. I visited him for severe acne scars. After 3 sessions of MNRF treatment, my skin texture has improved drastically. He explains everything in detail and doesn't prescribe unnecessary medicines. The Ambawadi clinic is also very modern and sterile.",
-    treatment: "MNRF Scar Rejuvenation"
+    text: "After a severe traumatic injury, I never thought I would look or feel like myself again. Thanks to Dr. Akhilesh's skillful reconstructive surgery, I have regained my appearance and confidence. He gave me back a part of my life that I thought was lost forever.",
+    treatment: "Microvascular Reconstruction"
   },
   {
     id: "rev-2",
-    authorName: "Anjali Sharma",
+    authorName: "Arindam Chakraborty",
     rating: 5,
     relativeTimeDescription: "1 month ago",
-    text: "Highly recommended for hair fall. I was experiencing extreme hair thinning. Dr. Arth recommended 4 sessions of GFC hair therapy combined with topical lotions. The treatment literally saved my hair. He gave me very honest guidance regarding expectations. The staff at JP 12th hub is very respectful.",
-    treatment: "GFC Hair Loss Therapy"
+    text: "Choosing Dr. Akhilesh for my surgical modification was one of the best and most comfortable experiences of my life. I would absolutely recommend him. The results are much better than I could have ever imagined.",
+    treatment: "Aesthetic Body Sculpting"
   },
   {
     id: "rev-3",
-    authorName: "Meghna Shah",
+    authorName: "Sharmila Ghosh",
     rating: 5,
     relativeTimeDescription: "3 months ago",
-    text: "Excellent dermatologist in Ahmedabad! I had chronic eczema on my hands for years, and visited multiple doctors. Dr. Koshia diagnosed it and gave a tailored cream regimen that cured it within weeks. He is super patient, answers all questions, and follows up beautifully.",
-    treatment: "Chronic Eczema Care"
+    text: "I was struggling with stubborn fat for years despite rigorous diet and exercise. Dr. Akhilesh performed customized Liposuction, and the results are outstanding! The Urbana Tower clinic is beautifully clean and modern.",
+    treatment: "High-Definition Liposuction"
   },
   {
     id: "rev-4",
-    authorName: "Rajesh Trivedi",
-    rating: 5,
-    relativeTimeDescription: "a year ago",
-    text: "I did Laser Hair Reduction for my beard framing. Very precise work. The laser equipment they use is elite tier—painless with zero burns. Dr. Arth monitors every session personally. Standard rates and superb hygiene standards.",
-    treatment: "Laser Hair Reduction"
-  },
-  {
-    id: "rev-5",
-    authorName: "Dr. Sandip Vyas",
+    authorName: "Dr. Amitava Roy",
     rating: 5,
     relativeTimeDescription: "6 months ago",
-    text: "As a fellow physician, I trust Dr. Arth Koshia completely for our family's skin issues. He has highly clinical acumen, follows evidence-based dermatology, and communicates treatment paths with perfect professional ethics. Ahmedabad is lucky to have him! ",
-    treatment: "Family Skin Health"
+    text: "As a surgeon myself, I appreciate Dr. Akhilesh's exceptional surgical skills, microvascular precision, and strict adherence to evidence-based medical ethics. His free cleft surgeries with Smile Train are inspiring. Best surgeon in Kolkata.",
+    treatment: "Congenital Cleft Repair"
   }
 ];
 

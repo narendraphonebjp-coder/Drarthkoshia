@@ -9,17 +9,17 @@ export default function ReviewsSection() {
   const [newReview, setNewReview] = useState({
     name: '',
     rating: 5,
-    treatment: 'Acne & Scar Care',
+    treatment: 'Rhinoplasty Nose Surgery',
     text: ''
   });
 
   const treatmentsList = [
-    "MNRF Scar Rejuvenation",
-    "GFC Hair Loss Therapy",
-    "Chronic Eczema Care",
-    "Laser Hair Reduction",
-    "Chemical Peels & Glowing",
-    "General Clinical Skin Care"
+    "Rhinoplasty Nose Surgery",
+    "High-Definition Liposuction",
+    "Mommy Makeover Program",
+    "Trauma Reconstruction",
+    "Breast Lift & Augmentation",
+    "Vitiligo Grafting Surgery"
   ];
 
   const handleSubmitReview = (e: React.FormEvent) => {
@@ -177,7 +177,7 @@ export default function ReviewsSection() {
                       rows={2}
                       value={newReview.text}
                       onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
-                      placeholder="Share your experience with Dr. Arth Koshia and the clinic staff..."
+                      placeholder="Share your experience with Dr. Akhilesh Agarwal and the clinic staff..."
                       className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 focus:border-[#7C9070] outline-none resize-none bg-white text-[#2C3328]"
                     />
                   </div>

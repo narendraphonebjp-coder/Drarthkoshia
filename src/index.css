@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-grotesk: 'Space Grotesk', sans-serif;
 }
 
 /* Custom Utilities for Natural Tones */
 :root {
   background-color: #FDFCF9;
-  color: #4A443E;
+  color: #2D2A26;
 }
 
 body {
   background-color: #FDFCF9;
-  color: #4A443E;
+  color: #2D2A26;
   font-family: var(--font-sans);
 }
 

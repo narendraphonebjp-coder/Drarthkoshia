@@ -25,7 +25,7 @@ export default function Header({ onOpenPortal, portalUserName, onLogoutPortal }:
 
   const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About Dr. Arth', href: '#about' },
+    { name: 'About Dr. Agarwal', href: '#about' },
     { name: 'Treatments & Services', href: '#services' },
     { name: 'Patient Reviews', href: '#reviews' },
     { name: 'Contact & Clinic', href: '#contact' }
@@ -49,14 +49,14 @@ export default function Header({ onOpenPortal, portalUserName, onLogoutPortal }:
           {/* Logo */}
           <a href="#home" className="flex items-center space-x-3 group">
             <div className="bg-[#7C9070] text-[#FDFCF9] w-10 h-10 rounded-full flex items-center justify-center font-serif text-lg font-bold shadow-sm group-hover:bg-[#6B705C] transition-colors">
-              K
+              A
             </div>
             <div className="flex flex-col text-left">
               <span className="font-serif font-bold text-lg leading-tight tracking-tight text-[#2C3328] group-hover:text-[#7C9070] transition-colors">
-                Koshia <span className="italic font-light text-[#7C9070]">Skin Care</span>
+                Agarwal <span className="italic font-light text-[#7C9070]">Plastic Surgery</span>
               </span>
               <span className="font-sans text-[10px] uppercase tracking-widest text-[#6B705C] font-semibold">
-                &amp; Aesthetic Clinic
+                &amp; Cosmetic Clinic
               </span>
             </div>
           </a>
