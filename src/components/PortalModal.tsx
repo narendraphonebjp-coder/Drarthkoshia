@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Lock, Shield, Mail, Phone, Calendar, Clock, MessageSquare, User, FileText, Check, PlusCircle, LogOut } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Lock, Shield, Mail, Phone, Calendar, Clock, MessageSquare, User, FileText, Check, PlusCircle, LogOut, Users, Inbox, Stethoscope, Sparkles } from 'lucide-react';
 import { TIME_SLOTS, CLINIC_SERVICES, DOCTOR_INFO } from '../data';
 import { Appointment } from '../types';
 
@@ -26,21 +26,103 @@ export default function PortalModal({
   
   // Dashboard states
   const [dashboardTab, setDashboardTab] = useState<'appointments' | 'prescriptions' | 'messages' | 'book'>('appointments');
-  const [appointmentsList, setAppointmentsList] = useState<Appointment[]>([
-    {
-      id: "appt-initial",
-      patientName: "Arjun Patel",
-      email: "arjun@gmail.com",
-      phone: "9876543210",
-      date: "2026-06-25",
-      timeSlot: "11:30 AM",
-      serviceId: "rhinoplasty",
-      treatmentType: "Rhinoplasty Nose Surgery",
-      notes: "Follow up review of nose structural alignment post-rhinoplasty.",
-      status: "confirmed"
-    }
-  ]);
   
+  // Doctor/Staff Dashboard specific Tab
+  const [doctorActiveTab, setDoctorActiveTab] = useState<'scheduler' | 'patients' | 'inquiries'>('scheduler');
+
+  // Unified localStorage Synchronized States
+  const [appointmentsList, setAppointmentsList] = useState<Appointment[]>(() => {
+    const saved = localStorage.getItem('clinic_appointments');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return [
+      {
+        id: "appt-initial",
+        patientName: "Arjun Patel",
+        email: "arjun@gmail.com",
+        phone: "+91 98765 43210",
+        date: "2026-06-25",
+        timeSlot: "11:30 AM",
+        serviceId: "rhinoplasty",
+        treatmentType: "Rhinoplasty Nose Surgery",
+        notes: "Follow up review of nose structural alignment post-rhinoplasty.",
+        status: "confirmed"
+      }
+    ];
+  });
+
+  const [prescriptionsList, setPrescriptionsList] = useState<any[]>(() => {
+    const saved = localStorage.getItem('clinic_prescriptions');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return [
+      {
+        id: "RX-2026-9912",
+        patientName: "Arjun Patel",
+        email: "arjun@gmail.com",
+        diagnosis: "Aesthetic Rhinoplasty Realignment",
+        doctorName: DOCTOR_INFO.name,
+        date: "June 11, 2026",
+        plan: [
+          "Analgesics & Anti-inflammatory - Once daily after meals (for swelling control)",
+          "Silicone Scar Gel - Gentle microvascular ointment cover, morning and night",
+          "Nasal Splint Alignment - Keep in place styled correctly for 7 days",
+          "Hydration and Safe Wash - Clean surrounding facial nodes with physiological saline"
+        ],
+        instructions: "Avoid active scrubbing. Apply healing ointment for 48 hours post-laser."
+      }
+    ];
+  });
+
+  const [inquiriesList, setInquiriesList] = useState<any[]>(() => {
+    const saved = localStorage.getItem('clinic_inquiries');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return [
+      {
+        id: "inq-1",
+        name: "Sanjay Sen",
+        email: "sanjay@gmail.com",
+        phone: "+91 94330 11223",
+        query: "Need details of high-definition liposuction recovery time for corporate employees.",
+        date: "2026-06-12",
+        status: "pending"
+      },
+      {
+        id: "inq-2",
+        name: "Priya Das",
+        email: "priya@outlook.com",
+        phone: "+91 81005 55666",
+        query: "Do you offer non-surgical liquid rhinoplasty options, or is surgical rhinoplasty the only option for droopy nose tips?",
+        date: "2026-06-14",
+        status: "resolved"
+      }
+    ];
+  });
+
+  const [patientsList, setPatientsList] = useState<any[]>(() => {
+    const saved = localStorage.getItem('clinic_patients');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return [
+      { name: "Arjun Patel", email: "arjun@gmail.com", phone: "+91 98765 43210", notes: "Regular aesthetic Rhinoplasty client tracking structural realignment." },
+      { name: "Priya Das", email: "priya@outlook.com", phone: "+91 81005 55666", notes: "Sent inquiry regarding liquid rhinoplasty options." },
+      { name: "Sanjay Sen", email: "sanjay@gmail.com", phone: "+91 94330 11223", notes: "Interested in High-Definition Liposuction contours." }
+    ];
+  });
+
   // Booking states
   const [bookForm, setBookForm] = useState({
     date: '2026-06-18',
@@ -49,6 +131,15 @@ export default function PortalModal({
     notes: ''
   });
   const [isBookSuccess, setIsBookSuccess] = useState(false);
+
+  // New Prescription Form for Doctor Dashboard
+  const [selectedPatientForRx, setSelectedPatientForRx] = useState<any | null>(null);
+  const [rxForm, setRxForm] = useState({
+    diagnosis: 'Post-Operative Recovery',
+    medicinesText: '',
+    instructions: 'Avoid strenuous exercises. Wash with soft sterile solution.'
+  });
+  const [rxSuccessMessage, setRxSuccessMessage] = useState('');
 
   // Secure Message states
   const [chatInput, setChatInput] = useState('');
@@ -60,6 +151,43 @@ export default function PortalModal({
     }
   ]);
 
+  // Synchronizers whenever state list mutations occur
+  useEffect(() => {
+    localStorage.setItem('clinic_appointments', JSON.stringify(appointmentsList));
+  }, [appointmentsList]);
+
+  useEffect(() => {
+    localStorage.setItem('clinic_prescriptions', JSON.stringify(prescriptionsList));
+  }, [prescriptionsList]);
+
+  useEffect(() => {
+    localStorage.setItem('clinic_inquiries', JSON.stringify(inquiriesList));
+  }, [inquiriesList]);
+
+  useEffect(() => {
+    localStorage.setItem('clinic_patients', JSON.stringify(patientsList));
+  }, [patientsList]);
+
+  // Handle external storage triggers (e.g., landing page inquiry submits)
+  useEffect(() => {
+    const handleSync = () => {
+      const inqs = localStorage.getItem('clinic_inquiries');
+      if (inqs) {
+        try {
+          setInquiriesList(JSON.parse(inqs));
+        } catch (e) {}
+      }
+      const appts = localStorage.getItem('clinic_appointments');
+      if (appts) {
+        try {
+          setAppointmentsList(JSON.parse(appts));
+        } catch (e) {}
+      }
+    };
+    window.addEventListener('storage', handleSync);
+    return () => window.removeEventListener('storage', handleSync);
+  }, []);
+
   if (!isOpen) return null;
 
   const handleSignIn = (e: React.FormEvent) => {
@@ -68,13 +196,29 @@ export default function PortalModal({
       setErrorMessage("Please fill all required login inputs.");
       return;
     }
-    // Simple mock success
+
+    if (authData.email.toLowerCase() === "doctor@drakhileshagarwal.com" || authData.email.toLowerCase() === "admin@clinic.com") {
+      onLoginSuccess("Dr. Akhilesh Agarwal (Chief Surgeon)");
+      setErrorMessage('');
+      setActiveTab('dashboard');
+      return;
+    }
+
+    // Simple mock patient success
     const determinedName = authData.email.split('@')[0];
     const formattedName = determinedName.charAt(0).toUpperCase() + determinedName.slice(1) + " Patel";
     onLoginSuccess(formattedName);
     
-    // Reset active appointments patientName to match
-    setAppointmentsList(prev => prev.map(appt => ({ ...appt, patientName: formattedName })));
+    // Register self in patients list if not present
+    const selfPatient = {
+      name: formattedName,
+      email: authData.email,
+      phone: authData.phone || "+91 99000 12345",
+      notes: "Registered through portal account login session."
+    };
+    if (!patientsList.some(p => p.email.toLowerCase() === authData.email.toLowerCase())) {
+      setPatientsList(prev => [...prev, selfPatient]);
+    }
     
     setErrorMessage('');
     setActiveTab('dashboard');
@@ -86,6 +230,19 @@ export default function PortalModal({
       setErrorMessage("Please complete all registration rows.");
       return;
     }
+
+    // Save newly created profile to patient list for doctor inspection
+    const newPatient = {
+      name: authData.name,
+      email: authData.email,
+      phone: authData.phone,
+      notes: "Newly self-registered via patient portal."
+    };
+
+    if (!patientsList.some(p => p.email.toLowerCase() === authData.email.toLowerCase())) {
+      setPatientsList(prev => [...prev, newPatient]);
+    }
+
     onLoginSuccess(authData.name);
     setErrorMessage('');
     setActiveTab('dashboard');
@@ -127,7 +284,7 @@ export default function PortalModal({
     setChatMessages(prev => [...prev, userMsg]);
     setChatInput('');
 
-    // Instant realistic response after 1 second
+    // Instant realistic response after 1.2 seconds
     setTimeout(() => {
       const respTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       const docMsg = {
@@ -238,15 +395,38 @@ export default function PortalModal({
                 </button>
               </form>
 
-              <div className="pt-4 border-t border-[#E8E2D9] flex items-center justify-between text-xs">
-                <span className="text-[#6B705C] font-light">First time at the clinic?</span>
-                <button
-                  id="portal-switch-signup"
-                  onClick={() => setActiveTab('signup')}
-                  className="text-[#7C9070] font-bold hover:underline cursor-pointer"
-                >
-                  Register Patient Profile
-                </button>
+              <div className="pt-4 border-t border-[#E8E2D9] space-y-3 text-xs text-left">
+                <div className="flex items-center justify-between">
+                  <span className="text-[#6B705C] font-light">First time at the clinic?</span>
+                  <button
+                    id="portal-switch-signup"
+                    onClick={() => setActiveTab('signup')}
+                    className="text-[#7C9070] font-bold hover:underline cursor-pointer"
+                  >
+                    Register Patient Profile
+                  </button>
+                </div>
+
+                <div className="bg-[#7C9070]/5 border border-[#7C9070]/20 p-4 rounded-xl space-y-2 text-left mt-2">
+                  <div className="flex items-center space-x-2 text-[#2C3328] font-bold uppercase tracking-wider text-[10px]">
+                    <Stethoscope className="h-3.5 w-3.5 text-[#7C9070]" />
+                    <span>Clinic Admin &amp; Practitioner Dashboard</span>
+                  </div>
+                  <p className="text-[11px] text-[#6B705C] leading-normal font-light">
+                    Are you the doctor or clinical secretary? Enter the master organizer panel to view upcoming appointments and live patient inquiry sheets.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onLoginSuccess("Dr. Akhilesh Agarwal (Chief Surgeon)");
+                      setActiveTab('dashboard');
+                      setDashboardTab('appointments');
+                    }}
+                    className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl transition-all cursor-pointer text-center flex items-center justify-center space-x-2 shadow-sm"
+                  >
+                    <span>Login as Doctor / Staff &rarr;</span>
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -352,7 +532,8 @@ export default function PortalModal({
 
           {/* Tab 3: PREMIUM LOGGED-IN PORTAL DASHBOARD */}
           {(portalUserName || activeTab === 'dashboard') && (
-            <div className="space-y-6">
+            !(portalUserName?.includes("Dr. Akhilesh")) ? (
+              <div className="space-y-6">
               
               {/* Patient header row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E2D9] pb-4 text-left">
@@ -636,7 +817,7 @@ export default function PortalModal({
                       <button
                         id="portal-create-appt-btn"
                         type="submit"
-                        className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl cursor-pointer text-center"
+                        className="w-full bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl cursor-pointer text-center font-sans"
                       >
                         Confirm Appointment Slot
                       </button>
@@ -646,6 +827,345 @@ export default function PortalModal({
               )}
 
             </div>
+            ) : (
+              // ==================== DOCTOR/STAFF ADMINISTRATION DESK ====================
+              <div className="space-y-6">
+                {/* Doctor header row */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E2D9] pb-4 text-left">
+                  <div>
+                    <h3 className="font-serif text-[#2C3328] text-base font-normal flex items-center space-x-2 animate-in fade-in">
+                      <Stethoscope className="h-5 w-5 text-[#7C9070]" />
+                      <span>Clinic Master Organizer Desk</span>
+                    </h3>
+                    <span className="font-sans text-xs text-[#6B705C] block mt-1">Practitioner: <strong className="text-[#7C9070]">{portalUserName}</strong></span>
+                  </div>
+                  <button
+                    id="portal-logout-action"
+                    onClick={() => {
+                      onLogout();
+                      setActiveTab('signin');
+                    }}
+                    className="flex items-center space-x-1 text-[#6B705C] hover:text-[#2C3328] transition-colors text-xs font-bold uppercase tracking-wider cursor-pointer font-sans"
+                  >
+                    <LogOut className="h-4 w-4 text-red-600" />
+                    <span className="text-red-700">Logout Desk</span>
+                  </button>
+                </div>
+
+                {/* Master Dashboard Overview Stats Cards */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+                  <div className="bg-[#F2EFE9] border border-[#E8E2D9] p-3 rounded-xl shadow-sm text-left">
+                    <span className="text-[9px] font-bold text-[#6B705C] uppercase tracking-wider block">Database Profiles</span>
+                    <p className="text-xl font-serif text-[#2C3328] font-semibold">{patientsList.length}</p>
+                  </div>
+                  <div className="bg-[#F2EFE9] border border-[#E8E2D9] p-3 rounded-xl shadow-sm text-left">
+                    <span className="text-[9px] font-bold text-[#6B705C] uppercase tracking-wider block">Upcoming Sessions</span>
+                    <p className="text-xl font-serif text-[#2C3328] font-semibold">{appointmentsList.filter(a => a.status !== 'cancelled').length}</p>
+                  </div>
+                  <div className="bg-[#F2EFE9] border border-[#E8E2D9] p-3 rounded-xl shadow-sm text-left">
+                    <span className="text-[9px] font-bold text-[#6B705C] uppercase tracking-wider block">Active Inquiries</span>
+                    <p className="text-xl font-serif text-[#2C3328] font-semibold">{inquiriesList.filter(i => i.status === 'pending').length}</p>
+                  </div>
+                  <div className="bg-[#F2EFE9] border border-[#E8E2D9] p-3 rounded-xl shadow-sm text-left">
+                    <span className="text-[9px] font-bold text-[#6B705C] uppercase tracking-wider block">Prescriptions Loaded</span>
+                    <p className="text-xl font-serif text-[#2C3328] font-semibold">{prescriptionsList.length}</p>
+                  </div>
+                </div>
+
+                {/* Doctor Dashboard Navigation tabs */}
+                <div className="flex flex-wrap gap-2 border-b border-[#E8E2D9] pb-4">
+                  <button
+                    onClick={() => setDoctorActiveTab('scheduler')}
+                    className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                      doctorActiveTab === 'scheduler' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
+                    }`}
+                  >
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>Clinical Scheduler ({appointmentsList.length})</span>
+                  </button>
+                  <button
+                    onClick={() => setDoctorActiveTab('patients')}
+                    className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                      doctorActiveTab === 'patients' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
+                    }`}
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                    <span>Active Patients Directory ({patientsList.length})</span>
+                  </button>
+                  <button
+                    onClick={() => setDoctorActiveTab('inquiries')}
+                    className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border ${
+                      doctorActiveTab === 'inquiries' ? 'bg-[#2C3328] text-[#FDFCF9] border-[#2C3328]' : 'bg-[#F0EBE3] text-[#6B705C] border-[#E8E2D9] hover:bg-[#E8E2D9]'
+                    }`}
+                  >
+                    <Inbox className="h-3.5 w-3.5" />
+                    <span>Inpatient Inquiry Inbox ({inquiriesList.length})</span>
+                  </button>
+                </div>
+
+                {/* 1. DOCTOR MODULE: CLINICAL SCHEDULER */}
+                {doctorActiveTab === 'scheduler' && (
+                  <div className="space-y-4 text-left">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Incoming Patient Bookings</h4>
+                      <span className="text-[10px] text-[#7C9070] italic font-semibold">Real-Time Sync Ready</span>
+                    </div>
+
+                    {appointmentsList.length === 0 ? (
+                      <p className="text-center py-8 text-[#6B705C] text-xs italic">No patient appointments have been filed yet.</p>
+                    ) : (
+                      <div className="space-y-3">
+                        {appointmentsList.map((appt) => (
+                          <div key={appt.id} className="bg-white border border-[#E8E2D9] p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-sm transition-all text-left">
+                            <div className="space-y-1">
+                              <div className="flex items-center space-x-2">
+                                <span className="font-semibold text-[10px] text-[#2C3328] bg-[#F0EBE3] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-sans">
+                                  {appt.treatmentType}
+                                </span>
+                                <span className={`text-[9px] px-2 py-0.5 rounded-md font-bold uppercase tracking-wider font-sans ${
+                                  appt.status === 'confirmed' ? 'bg-emerald-55 text-emerald-800' :
+                                  appt.status === 'cancelled' ? 'bg-rose-50 text-rose-700' : 'bg-amber-50 text-amber-700'
+                                }`}>
+                                  {appt.status}
+                                </span>
+                              </div>
+                              <h5 className="font-sans font-bold text-sm text-[#2C3328] uppercase mt-1">
+                                Patient: {appt.patientName}
+                              </h5>
+                              <p className="text-xs text-[#6B705C] font-semibold mt-0.5 font-sans">
+                                📞 Mobile: {appt.phone} &bull; ✉️ Email: {appt.email}
+                              </p>
+                              <p className="text-xs text-[#7C9070] font-sans font-bold flex items-center space-x-2 mt-0.5 font-sans">
+                                <span>📅 Date: {appt.date}</span>
+                                <span>&bull;</span>
+                                <span>⏰ Slot: {appt.timeSlot}</span>
+                              </p>
+                              {appt.notes && (
+                                <p className="text-xs bg-[#FDFCF9] border border-[#E8E2D9] p-2.5 rounded-xl text-[#6B705C] italic mt-2 font-light leading-relaxed">
+                                  Symptom Notes &amp; Requests: "{appt.notes}"
+                                </p>
+                              )}
+                            </div>
+
+                            <div className="flex flex-row md:flex-col items-center justify-end gap-2 shrink-0">
+                              {appt.status !== 'confirmed' && (
+                                <button
+                                  onClick={() => {
+                                    setAppointmentsList(prev => prev.map(a => a.id === appt.id ? { ...a, status: 'confirmed' } : a));
+                                  }}
+                                  className="w-full bg-[#7C9070] hover:bg-[#6B705C] text-white font-sans text-[10px] font-bold uppercase py-2 px-3.5 rounded-lg cursor-pointer transition-colors text-center"
+                                >
+                                  Confirm
+                                </button>
+                              )}
+                              {appt.status !== 'cancelled' && (
+                                <button
+                                  onClick={() => {
+                                    setAppointmentsList(prev => prev.map(a => a.id === appt.id ? { ...a, status: 'cancelled' } : a));
+                                  }}
+                                  className="w-full bg-[#F2EFE9] hover:bg-rose-100 text-rose-700 border border-[#E8E2D9] hover:border-rose-200 font-sans text-[10px] font-bold uppercase py-2 px-3.5 rounded-lg cursor-pointer transition-colors text-center"
+                                >
+                                  Cancel / Delete
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* 2. DOCTOR MODULE: ACTIVE PATIENTS DIRECTORY */}
+                {doctorActiveTab === 'patients' && (
+                  <div className="space-y-4 text-left">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Patient Records Directory</h4>
+                      <span className="text-[10px] text-[#7C9070] italic">Select Patient to Issue Prescriptions</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start text-left">
+                      {/* Left List of Patients */}
+                      <div className="lg:col-span-5 space-y-2.5 text-left">
+                        {patientsList.map((pat, idx) => (
+                          <div
+                            key={idx}
+                            onClick={() => {
+                              setSelectedPatientForRx(pat);
+                              setRxForm({
+                                diagnosis: pat.notes.toLowerCase().includes('rhinoplasty') || pat.notes.toLowerCase().includes('nose') ? 'Rhinoplasty Post-Op care' : 'Aesthetic contours checkup',
+                                medicinesText: pat.notes.toLowerCase().includes('rhinoplasty') || pat.notes.toLowerCase().includes('nose') 
+                                  ? "Analgesics 500mg - Once daily after meals\nSilicone Scar Gel - Apply thin film twice daily\nNasal Support Splint - Keep perfectly aligned 7 days" 
+                                  : "Gentle Facial Moisturizing Cream - Morning and evening\nBroad Spectrum SPF 50 - Apply daily before sun exposure",
+                                instructions: 'Avoid strenuous exercises for 14 days. Wash gently with warm sterile saline.'
+                              });
+                            }}
+                            className={`p-4 rounded-2xl border transition-all cursor-pointer text-left ${
+                              selectedPatientForRx?.email === pat.email
+                                ? 'bg-[#2C3328] text-white border-[#2C3328] shadow-md'
+                                : 'bg-white text-[#6B705C] border-[#E8E2D9] hover:bg-[#F2EFE9]'
+                            }`}
+                          >
+                            <h5 className="font-sans font-bold text-xs uppercase tracking-wider block font-sans">
+                              {pat.name}
+                            </h5>
+                            <p className="text-[11px] leading-tight mt-1 opacity-90 font-mono">{pat.email}</p>
+                            <p className="text-[11px] font-semibold mt-0.5 opacity-95">📞 Contact: {pat.phone}</p>
+                            <p className={`text-[10px] mt-2 italic font-light ${selectedPatientForRx?.email === pat.email ? 'text-[#E8E2D9]' : 'text-[#A5A58D]'}`}>
+                              "{pat.notes || 'No description notes provided.'}"
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Right Prescription Generator & Clinical Records */}
+                      <div className="lg:col-span-7 bg-white border border-[#E8E2D9] p-5 rounded-2xl space-y-4 shadow-sm text-left font-sans">
+                        {selectedPatientForRx ? (
+                          <div className="space-y-4 text-left">
+                            <div className="border-b border-[#E8E2D9] pb-2 text-left">
+                              <span className="text-[9px] bg-[#FDFCF9] border border-[#7C9070]/30 text-[#7C9070] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wide inline-block font-sans">
+                                Digital Prescription Compiler
+                              </span>
+                              <h4 className="font-serif text-[#2C3328] text-lg mt-2">E-Prescribe: {selectedPatientForRx.name}</h4>
+                              <p className="text-xs text-[#6B705C] font-mono">Patient Email: {selectedPatientForRx.email}</p>
+                            </div>
+
+                            {rxSuccessMessage && (
+                              <div className="bg-emerald-55/65 border border-emerald-200 p-3 rounded-xl text-emerald-800 text-xs font-semibold animate-in fade-in duration-200 text-left">
+                                {rxSuccessMessage}
+                              </div>
+                            )}
+
+                            <div className="space-y-3 font-sans text-left">
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-[#6B705C] uppercase block tracking-wider text-left">Diagnosis / Surgical Treatment</label>
+                                <input
+                                  type="text"
+                                  value={rxForm.diagnosis}
+                                  onChange={(e) => setRxForm({ ...rxForm, diagnosis: e.target.value })}
+                                  className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 outline-none focus:border-[#7C9070] bg-[#FDFCF9] text-[#2C3328]"
+                                />
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-[#6B705C] uppercase block tracking-wider flex justify-between text-left">
+                                  <span>Medicines &amp; Frequency Dosage</span>
+                                  <span className="text-[9px] text-[#A5A58D] font-normal normal-case">one per line</span>
+                                </label>
+                                <textarea
+                                  rows={4}
+                                  placeholder="e.g. tablet post-op 500mg - Twice daily"
+                                  value={rxForm.medicinesText}
+                                  onChange={(e) => setRxForm({ ...rxForm, medicinesText: e.target.value })}
+                                  className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 outline-none focus:border-[#7C9070] bg-[#FDFCF9] text-[#2C3328] resize-none leading-relaxed font-mono"
+                                />
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-[#6B705C] uppercase block tracking-wider text-left">General Care Instructions</label>
+                                <input
+                                  type="text"
+                                  value={rxForm.instructions}
+                                  onChange={(e) => setRxForm({ ...rxForm, instructions: e.target.value })}
+                                  className="w-full text-xs font-semibold border border-[#E8E2D9] rounded-xl py-2.5 px-3.5 outline-none focus:border-[#7C9070] bg-[#FDFCF9] text-[#2C3328]"
+                                />
+                              </div>
+
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  if (!rxForm.medicinesText.trim()) return;
+                                  const planItems = rxForm.medicinesText.split('\n').filter(line => line.trim());
+                                  const newRx = {
+                                    id: `RX-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+                                    patientName: selectedPatientForRx.name,
+                                    email: selectedPatientForRx.email,
+                                    diagnosis: rxForm.diagnosis,
+                                    doctorName: DOCTOR_INFO.name,
+                                    date: new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }),
+                                    plan: planItems,
+                                    instructions: rxForm.instructions
+                                  };
+                                  setPrescriptionsList([newRx, ...prescriptionsList]);
+                                  setRxSuccessMessage(`Rx Prescribed Successfully! Dynamically synchronized to patient email account.`);
+                                  setTimeout(() => setRxSuccessMessage(''), 4000);
+                                }}
+                                className="w-full bg-[#7C9070] hover:bg-[#6B705C] text-white font-sans text-xs font-bold uppercase py-3 rounded-xl cursor-pointer shadow-sm transition-colors text-center block mt-2"
+                              >
+                                Issue &amp; Upload Active Prescription
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="text-center py-12 text-[#6B705C] text-xs italic font-light space-y-1.5">
+                            <p>No Patient Selected</p>
+                            <p className="text-[10px] text-[#A5A58D]">Click on any patient file row on the left side to compile real prescriptions, view email sync tags, or diagnose recovery regimes.</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. DOCTOR MODULE: CONTACT INQUIRIES DESK */}
+                {doctorActiveTab === 'inquiries' && (
+                  <div className="space-y-4 text-left font-sans">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-sans font-bold text-xs uppercase tracking-wider text-[#2C3328]">Live Landing Inquiry Sheets</h4>
+                      <span className="text-[10px] text-[#7C9070] italic font-semibold">Synchronized with Main Contact Form</span>
+                    </div>
+
+                    {inquiriesList.length === 0 ? (
+                      <p className="text-center py-12 text-[#6B705C] text-xs italic">No contact inquiries exist in the registry.</p>
+                    ) : (
+                      <div className="space-y-3.5">
+                        {inquiriesList.map((inq) => (
+                          <div key={inq.id} className="bg-white border border-[#E8E2D9] p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-sm transition-all text-left">
+                            <div className="space-y-1">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-[9px] font-bold text-[#6B705C] bg-[#F2EFE9] px-2 py-0.5 rounded-md uppercase">
+                                  Landing Page Form Submission &bull; {inq.date}
+                                </span>
+                                <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                                  inq.status === 'resolved' ? 'bg-emerald-55 text-emerald-800' : 'bg-rose-50 text-rose-700 animate-pulse'
+                                }`}>
+                                  {inq.status}
+                                </span>
+                              </div>
+                              <h5 className="font-sans font-bold text-xs text-[#2C3328] uppercase mt-1">From Customer: {inq.name}</h5>
+                              <p className="text-[11px] text-[#6B705C] font-semibold">
+                                ✉️ Email: {inq.email} &bull; 📞 Phone: {inq.phone}
+                              </p>
+                              <p className="text-xs text-[#2C2328] italic border-l-2 border-[#7C9070] pl-2 py-1 bg-[#FDFCF9] mr-12 mt-2 leading-relaxed">
+                                "{inq.query}"
+                              </p>
+                            </div>
+
+                            <div className="shrink-0 text-right">
+                              {inq.status !== 'resolved' ? (
+                                <button
+                                  onClick={() => {
+                                    setInquiriesList(prev => prev.map(i => i.id === inq.id ? { ...i, status: 'resolved' } : i));
+                                  }}
+                                  className="bg-[#2C3328] hover:bg-[#3D4637] text-[#FDFCF9] font-sans text-[10px] font-bold uppercase tracking-wider py-1.5 px-3.5 rounded-lg cursor-pointer transition-colors"
+                                >
+                                  Mark Resolved
+                                </button>
+                              ) : (
+                                <span className="text-[11px] text-emerald-700 font-bold flex items-center space-x-1 justify-end font-sans">
+                                  <Check className="h-3.5 w-3.5 text-emerald-600" />
+                                  <span>Resolved Desk</span>
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )
           )}
 
         </div>

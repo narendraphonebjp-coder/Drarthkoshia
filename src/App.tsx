@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -29,8 +29,25 @@ export default function App() {
 
   // Simulated Video Player States
   const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(60); // 60% complete mock
-  const [currentTime, setCurrentTime] = useState('01:12');
+  const [videoTimeSeconds, setVideoTimeSeconds] = useState(0); // 0 to 120 seconds
+
+  // Handle live timer progress
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isVideoOpen && isPlaying) {
+      interval = setInterval(() => {
+        setVideoTimeSeconds((prev) => {
+          if (prev >= 120) {
+            return 0; // loop back to start
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isVideoOpen, isPlaying]);
 
   const handleOpenPortal = () => {
     setIsPortalOpen(true);
@@ -58,10 +75,29 @@ export default function App() {
   };
 
   const restartVideo = () => {
-    setProgress(0);
-    setCurrentTime('00:00');
+    setVideoTimeSeconds(0);
     setIsPlaying(true);
   };
+
+  // Derived slideshow properties
+  const progress = (videoTimeSeconds / 120) * 100;
+  const mins = Math.floor(videoTimeSeconds / 60);
+  const secs = videoTimeSeconds % 60;
+  const currentTime = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+  let activeVideoImg = clinicLobbyImg;
+  let activeChapterTitle = "1. Modern Consultation Lounge";
+  let activeChapterDesc = "Walkthrough of our elegant reception and waiting room designed in natural olive and beige tones.";
+
+  if (videoTimeSeconds >= 40 && videoTimeSeconds < 80) {
+    activeVideoImg = dermalTreatmentImg;
+    activeChapterTitle = "2. Sterile Surgical & Aesthetic Suite";
+    activeChapterDesc = "A tour of our pristine operating environment and advanced laser systems designed for safety.";
+  } else if (videoTimeSeconds >= 80) {
+    activeVideoImg = doctorPortraitImg;
+    activeChapterTitle = "3. Personal Consultation";
+    activeChapterDesc = "Meet Dr. Akhilesh Agarwal to discuss high-definition body sculpting and advanced rhinoplasty designs.";
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white flex flex-col justify-between">
@@ -136,11 +172,12 @@ export default function App() {
             {/* Video Viewport Stage */}
             <div className="relative aspect-video bg-slate-950 flex items-center justify-center overflow-hidden">
               <img
-                src={clinicLobbyImg}
+                src={activeVideoImg}
                 alt="Clinic Tour Footage"
-                className={`w-full h-full object-cover transition-all duration-700 ${
-                  isPlaying ? 'brightness-[0.75] contrast-[1.05] scale-102' : 'brightness-50 filter blur-sm scale-100'
+                className={`w-full h-full object-cover transition-all duration-1000 ${
+                  isPlaying ? 'brightness-[0.75] contrast-[1.05] scale-105' : 'brightness-50 filter blur-sm scale-100'
                 }`}
+                key={activeVideoImg}
                 referrerPolicy="no-referrer"
               />
 
@@ -148,9 +185,9 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
               {/* Patient Reception Tag / watermark */}
-              <div className="absolute top-4 left-4 bg-slate-950/80 px-2.5 py-1 rounded-md text-[10px] tracking-wider uppercase font-bold text-blue-400 flex items-center space-x-1 border border-slate-800">
-                <span className="w-2 h-2 bg-rose-600 rounded-full animate-ping" />
-                <span>REC • LIVE CONSULTATION DEMO</span>
+              <div className="absolute top-4 left-4 bg-slate-950/80 px-2.5 py-1 rounded-md text-[10px] tracking-wider uppercase font-bold text-emerald-400 flex items-center space-x-1 border border-slate-800">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
+                <span>REC • LIVE CLINIC TOUR &amp; SURGERY PORTFOLIO</span>
               </div>
 
               {/* Central Large Play Icon if paused */}
@@ -158,17 +195,19 @@ export default function App() {
                 <button
                   id="video-play-center-btn"
                   onClick={togglePlay}
-                  className="absolute bg-blue-600 text-white p-5 rounded-full shadow-2xl border border-blue-500 hover:scale-110 active:scale-95 transition-transform"
+                  className="absolute bg-[#7C9070] text-[#FDFCF9] p-5 rounded-full shadow-2xl border border-[#7C9070]/50 hover:scale-110 active:scale-95 transition-transform cursor-pointer"
                 >
                   <Play className="h-8 w-8 fill-current translate-x-0.5" />
                 </button>
               )}
 
               {/* Text overlay introducing the doctor */}
-              <div className="absolute bottom-16 left-6 right-6 text-left space-y-1">
-                <span className="text-xs font-bold text-blue-300">Featured Chapter: Advanced Reconstructive Surgery</span>
-                <p className="text-xs text-slate-300 leading-normal max-w-lg">
-                  Watch Dr. Akhilesh Agarwal demonstrate advanced rhinoplasty facial reshaping. Our surgical procedures ensure safe, beautiful, balanced results for patients in Kolkata.
+              <div className="absolute bottom-16 left-6 right-6 text-left space-y-1 z-10">
+                <span className="text-xs font-bold text-[#D4A373] tracking-widest uppercase block mb-1">
+                  {activeChapterTitle}
+                </span>
+                <p className="text-xs text-slate-200 leading-normal max-w-lg filter drop-shadow font-light">
+                  {activeChapterDesc}
                 </p>
               </div>
             </div>

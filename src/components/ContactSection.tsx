@@ -10,8 +10,46 @@ export default function ContactSection() {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.query) return;
 
+    // Load existing inquiries from localStorage for synchronization
+    const savedInquiries = localStorage.getItem('clinic_inquiries');
+    const inquiries = savedInquiries ? JSON.parse(savedInquiries) : [
+      {
+        id: "inq-1",
+        name: "Sanjay Sen",
+        email: "sanjay@gmail.com",
+        phone: "+91 94330 11223",
+        query: "Need details of high-definition liposuction recovery time for corporate employees.",
+        date: "2026-06-12",
+        status: "pending"
+      },
+      {
+        id: "inq-2",
+        name: "Priya Das",
+        email: "priya@outlook.com",
+        phone: "+91 81005 55666",
+        query: "Do you offer non-surgical liquid rhinoplasty options, or is surgical rhinoplasty the only option for droopy nose tips?",
+        date: "2026-06-14",
+        status: "resolved"
+      }
+    ];
+
+    const newInquiry = {
+      id: `inq-${Date.now()}`,
+      name: formState.name,
+      email: formState.email,
+      phone: formState.phone || 'Not provided',
+      query: formState.query,
+      date: new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }),
+      status: "pending"
+    };
+
+    localStorage.setItem('clinic_inquiries', JSON.stringify([newInquiry, ...inquiries]));
+
     setIsSubmitSuccess(true);
     setFormState({ name: '', email: '', phone: '', query: '' });
+
+    // Instantly dispatch a storage event to live-update other components on same page
+    window.dispatchEvent(new Event('storage'));
 
     setTimeout(() => {
       setIsSubmitSuccess(false);
